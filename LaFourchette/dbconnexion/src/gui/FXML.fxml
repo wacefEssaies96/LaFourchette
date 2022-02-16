@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gui.FXMLController">
+   <children>
+      <TableView layoutX="300.0" layoutY="61.0" prefHeight="220.0" prefWidth="222.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <Button layoutX="40.0" layoutY="274.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="100.0" layoutY="274.0" mnemonicParsing="false" text="Button" />
+      <Button layoutX="172.0" layoutY="274.0" mnemonicParsing="false" text="Button" />
+      <Label layoutX="26.0" layoutY="67.0" text="Label" />
+      <Label layoutX="26.0" layoutY="102.0" text="Label" />
+      <Label layoutX="26.0" layoutY="140.0" text="Label" />
+      <Label layoutX="26.0" layoutY="175.0" text="Label" />
+      <Label layoutX="26.0" layoutY="211.0" text="Label" />
+      <TextField layoutX="86.0" layoutY="63.0" />
+      <TextField layoutX="86.0" layoutY="98.0" />
+      <TextField layoutX="86.0" layoutY="136.0" />
+      <TextField layoutX="86.0" layoutY="171.0" />
+      <TextField layoutX="86.0" layoutY="207.0" />
+   </children>
+</AnchorPane>

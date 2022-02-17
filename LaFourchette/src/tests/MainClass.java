@@ -22,6 +22,10 @@ import services.EvenementCrud;
 import services.ReservationService;
 import services.Table_RestoService;
 import utils.MyConnection;
+import entities.Reclamation;
+import entities.TypeReclamation;
+import services.ReclamationCRUD;
+import services.TypeReclamationCRUD;
 public class MainClass {
   public static void main(String[] args) {
       /*UtilisateurService sp = new UtilisateurService() ;
@@ -83,6 +87,18 @@ public class MainClass {
       //SER_RES.ajouter(RES);
       //SER_RES.modifier(RES1);
       //SER_RES.find();
+
+      TypeReclamationCRUD tr = new TypeReclamationCRUD() ;
+      ReclamationCRUD R = new ReclamationCRUD() ;
+      TypeReclamation t = new TypeReclamation("Réclamation technique","T013");
+      TypeReclamation t2 = new TypeReclamation("Réclamation service","TE50");
+      Reclamation Rec = new Reclamation(3,"Réclamation technique",22,"qwerty","En cours");
+        //tr.ajouterTypeReclamation(t);
+        //tr.supprimerTypeReclamation(t);
+        //tr.modifierTypeReclamation(t2);
+        //R.ajouterReclamation(Rec);
+        //R.modifierReclamation(Rec);
+        //R.supprimerReclamation(Rec);
             
 
 

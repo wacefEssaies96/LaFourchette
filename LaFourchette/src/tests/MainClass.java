@@ -48,6 +48,36 @@ public class MainClass {
        ecd.updateE(4,"d2","descriptionb","C:\\user\\Documents\\NetBeansProjects\\JavaApplication5\\src\\image_image.jpg",40,7);
         
           System.out.println(ecd.afficherEvenement());  
+
+
+          
+           ArrayList EtatTableResto=new ArrayList();
+       EtatTableResto.add("Disponible");
+       EtatTableResto.add("Reserve");
+        
+        
+      Table_RestoService SER_TAB_RES = new Table_RestoService() ;
+      Table_Resto TAB_RES = new Table_Resto(1,5,EtatTableResto.get(0).toString());
+      Table_Resto TAB_RES1 = new Table_Resto(2,2,EtatTableResto.get(1).toString());
+      Table_Resto TAB_RES2 = new Table_Resto(3,2,EtatTableResto.get(1).toString());
+      Table_Resto TAB_RES3 = new Table_Resto(4,2,EtatTableResto.get(1).toString());
+      Table_Resto TAB_RES4 = new Table_Resto(10,2,EtatTableResto.get(1).toString());
+      
+      //SER_TAB_RES.ajouter(TAB_RES1);
+      //SER_TAB_RES.modifier(TAB_RES);
+      //SER_TAB_RES.find();
+      //SER_TAB_RES.supprimer(TAB_RES4);
+      
+      ReservationService SER_RES = new ReservationService() ;
+      java.util.Date utilDate = new java.util.Date();
+      java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+      Reservation RES = new Reservation(1, 1, 2, sqlDate,sqlDate);
+      Reservation RES1 = new Reservation(2, 10, 10, sqlDate,sqlDate);
+      Reservation RES2 = new Reservation(3, 3, 2, sqlDate,sqlDate);
+      
+      //SER_RES.ajouter(RES);
+      //SER_RES.modifier(RES1);
+      //SER_RES.find();
             
 
 

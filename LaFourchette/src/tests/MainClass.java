@@ -96,9 +96,11 @@ public class MainClass {
         //tr.ajouterTypeReclamation(t);
         //tr.supprimerTypeReclamation(t);
         //tr.modifierTypeReclamation(t2);
+        //System.out.println(tr.afficherTypeReclamation());
         //R.ajouterReclamation(Rec);
         //R.modifierReclamation(Rec);
         //R.supprimerReclamation(Rec);
+        //System.out.println(R.afficherReclamation());
             
 
 

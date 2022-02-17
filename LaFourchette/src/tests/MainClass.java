@@ -15,7 +15,12 @@ import services.UtilisateurService;
 import entities.UtilisateurE;
 import services.UtilisateurCrud;
 import entities.Evenement;
+import entities.Reservation;
+import entities.Table_Resto;
+import java.util.ArrayList;
 import services.EvenementCrud;
+import services.ReservationService;
+import services.Table_RestoService;
 import utils.MyConnection;
 public class MainClass {
   public static void main(String[] args) {

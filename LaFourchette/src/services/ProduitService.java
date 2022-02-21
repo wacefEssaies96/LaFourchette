@@ -5,14 +5,15 @@
  */
 package services;
 import entities.Produit;
+
+
 import java.sql.Connection;
+import utils.MyConnection;
+import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-import utils.MyConnection;
-
 /**
  *
  * @author wacef
@@ -20,23 +21,28 @@ import utils.MyConnection;
 public class ProduitService {
     Connection cnx;
     public ProduitService() {
-         cnx = MyConnection.getInstance().getCnx();
+        cnx = MyConnection.getInstance().getCnx();
     }
    
-    public void ajouter(Produit t) {
+    public void ajouterProduit(Produit t) {
+        System.out.println(cnx);
+        
         try {
-            String query="INSERT INTO produit(quantite,image,prix) values(?,?,?)";
-            PreparedStatement smt = cnx.prepareStatement(query);
-            smt.setInt(1, t.getQuantite());
-            smt.setString(2, t.getImage());
-            smt.setDouble(3, t.getPrix());
+            String requete="INSERT INTO produit(nomProd,quantite,image,prix) values(?,?,?,?)";
+            System.out.println(requete);
+            PreparedStatement smt = cnx.prepareStatement(requete);
+            System.out.println(smt);
+            smt.setString(1, t.getNomProd());
+            smt.setInt(2, t.getQuantite());
+            smt.setString(3, t.getImage());
+            smt.setDouble(4, t.getPrix());
             smt.executeUpdate();
             System.out.println("ajout avec succee");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
     }
-    public void modifier(Produit t) {
+    public void modifierProduit(Produit t) {
         try {
             String query2="update produit set quantite=?, image=?, prix=? where nomProd=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
@@ -50,7 +56,7 @@ public class ProduitService {
             System.out.println(ex.getMessage());
         }
     }
-    public void supprimer(Produit t) {
+    public void supprimerProduit(Produit t) {
         try {
             String query2="delete from produit where nomProd=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
@@ -62,10 +68,10 @@ public class ProduitService {
         }
     }
 
-    public List<Produit> find() {
+    public List<Produit> afficherListeProduits() {
         ArrayList l=new ArrayList();
         try {
-            String query2="select * from Utilisateur";
+            String query2="select * from produit";
             PreparedStatement smt = cnx.prepareStatement(query2);
             Produit p;
             ResultSet rs= smt.executeQuery();

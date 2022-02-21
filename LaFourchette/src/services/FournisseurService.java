@@ -23,7 +23,7 @@ public class FournisseurService {
     public FournisseurService() {
          cnx = MyConnection.getInstance().getCnx();
     }
-    public void ajouter(Fournisseur t) {
+    public void ajouterFournisseur(Fournisseur t) {
         try {
             String query="INSERT INTO fournisseur(nomF,telephoneF,categorie,emailF) values(?,?,?,?)";
             PreparedStatement smt = cnx.prepareStatement(query);
@@ -37,7 +37,7 @@ public class FournisseurService {
             System.out.println(ex.getMessage());
        }
     }
-    public void modifier(Fournisseur t) {
+    public void modifierFournisseur(Fournisseur t) {
         try {
             String query2="update fournisseur set  nomF=?, telephoneF=?, categorie=?, emailF=? where idF=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
@@ -53,7 +53,7 @@ public class FournisseurService {
             }
     }
     
-    public void supprimer(Fournisseur t) {
+    public void supprimerFournisseur(Fournisseur t) {
         try {
             String query2="delete from fournisseur where idF=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
@@ -64,7 +64,7 @@ public class FournisseurService {
             System.out.println(ex.getMessage());
         }
     }
-    public List<Fournisseur> find() {
+    public List<Fournisseur> afficherListeFournisseur() {
         ArrayList l=new ArrayList(); 
         try {
             String query2="select * from fournisseur";

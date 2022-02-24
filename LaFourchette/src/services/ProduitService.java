@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package services;
+import entities.Fournisseur;
 import entities.Produit;
 
 
@@ -22,6 +23,7 @@ public class ProduitService {
     Connection cnx;
     public ProduitService() {
         cnx = MyConnection.getInstance().getCnx();
+        System.out.println(cnx);
     }
    
     public void ajouterProduit(Produit t) {
@@ -29,9 +31,7 @@ public class ProduitService {
         
         try {
             String requete="INSERT INTO produit(nomProd,quantite,image,prix) values(?,?,?,?)";
-            System.out.println(requete);
             PreparedStatement smt = cnx.prepareStatement(requete);
-            System.out.println(smt);
             smt.setString(1, t.getNomProd());
             smt.setInt(2, t.getQuantite());
             smt.setString(3, t.getImage());
@@ -71,13 +71,16 @@ public class ProduitService {
     public List<Produit> afficherListeProduits() {
         ArrayList l=new ArrayList();
         try {
-            String query2="select * from produit";
+            String query2="SELECT * FROM produit p inner join produit_fournisseur pf ON p.nomProd = pf.nomProd inner JOIN fournisseur f ON f.idF = pf.idF";
             PreparedStatement smt = cnx.prepareStatement(query2);
             Produit p;
+            Fournisseur f;
             ResultSet rs= smt.executeQuery();
             while(rs.next()){
                p = new Produit(rs.getString("nomProd"),rs.getInt("quantite"),rs.getString("image"),rs.getDouble("prix"));
                l.add(p);
+               f=new Fournisseur(rs.getInt("idF"),rs.getString("nomF"),rs.getInt("telephoneF"),rs.getString("emailF"));
+               l.add(f);
             }
             System.out.println(l);
         } catch (SQLException ex) {

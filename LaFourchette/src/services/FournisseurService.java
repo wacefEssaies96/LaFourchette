@@ -6,6 +6,8 @@
 package services;
 
 import entities.Fournisseur;
+import entities.Produit;
+import entities.ProduitFournisseur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,15 +24,15 @@ public class FournisseurService {
     Connection cnx;
     public FournisseurService() {
          cnx = MyConnection.getInstance().getCnx();
+         System.out.println(cnx);
     }
     public void ajouterFournisseur(Fournisseur t) {
         try {
-            String query="INSERT INTO fournisseur(nomF,telephoneF,categorie,emailF) values(?,?,?,?)";
+            String query="INSERT INTO fournisseur(nomF,telephoneF,emailF) values(?,?,?)";
             PreparedStatement smt = cnx.prepareStatement(query);
             smt.setString(1, t.getNomF());
             smt.setInt(2, t.getTelephoneF());
-            smt.setString(3, t.getCategorie());
-            smt.setString(4, t.getEmailF());
+            smt.setString(3, t.getEmailF());
             smt.executeUpdate();
             System.out.println("ajout avec succee");
         } catch (SQLException ex) {
@@ -39,13 +41,12 @@ public class FournisseurService {
     }
     public void modifierFournisseur(Fournisseur t) {
         try {
-            String query2="update fournisseur set  nomF=?, telephoneF=?, categorie=?, emailF=? where idF=?";
+            String query2="update fournisseur set  nomF=?, telephoneF=?, emailF=? where idF=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
             smt.setString(1, t.getNomF());
             smt.setInt(2, t.getTelephoneF());
-            smt.setString(3, t.getCategorie());
-            smt.setString(4, t.getEmailF());
-            smt.setInt(5, t.getIdF());
+            smt.setString(3, t.getEmailF());
+            smt.setInt(4, t.getIdF());
             smt.executeUpdate();
             System.out.println("modification avec succee");
             } catch (SQLException ex) {
@@ -67,13 +68,17 @@ public class FournisseurService {
     public List<Fournisseur> afficherListeFournisseur() {
         ArrayList l=new ArrayList(); 
         try {
-            String query2="select * from fournisseur";
+            String query2="SELECT * FROM fournisseur f inner join produit_fournisseur pf ON f.idF = pf.idF inner JOIN produit p ON p.nomProd = pf.nomProd";
             PreparedStatement smt = cnx.prepareStatement(query2);
-            Fournisseur p;
+            Fournisseur f;
+            Produit p;
             ResultSet rs= smt.executeQuery();
             while(rs.next()){
-               p=new Fournisseur(rs.getInt("idF"),rs.getString("nomF"),rs.getInt("telephoneF"),rs.getString("categorie"),rs.getString("emailF"));
+               f=new Fournisseur(rs.getInt("idF"),rs.getString("nomF"),rs.getInt("telephoneF"),rs.getString("emailF"));
+               l.add(f);
+               p = new Produit(rs.getString("nomProd"),rs.getInt("quantite"),rs.getString("image"),rs.getDouble("prix"));
                l.add(p);
+               
             }
             System.out.println(l);
         } catch (SQLException ex) {

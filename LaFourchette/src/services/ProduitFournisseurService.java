@@ -47,21 +47,4 @@ public class ProduitFournisseurService {
             System.out.println(ex.getMessage());
         }
     }
-    public List<ProduitFournisseur> afficherListeProduitFournisseur() {
-        ArrayList l=new ArrayList();
-        try {
-            String query2="select * from produit_fournissseur";
-            PreparedStatement smt = cnx.prepareStatement(query2);
-            ProduitFournisseur p;
-            ResultSet rs= smt.executeQuery();
-            while(rs.next()){
-               p = new ProduitFournisseur(rs.getInt("id"),rs.getString("nomProd"),rs.getInt("idF"));
-               l.add(p);
-            }
-            System.out.println(l);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return l;
-    }
 }

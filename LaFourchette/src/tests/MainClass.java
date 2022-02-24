@@ -18,6 +18,7 @@ import entities.Evenement;
 import entities.Fournisseur;
 import entities.Plat;
 import entities.Produit;
+import entities.ProduitFournisseur;
 import entities.Reservation;
 import entities.Table_Resto;
 import java.util.ArrayList;
@@ -29,25 +30,42 @@ import entities.Reclamation;
 import entities.TypeReclamation;
 import java.sql.Connection;
 import services.FournisseurService;
+import services.ProduitFournisseurService;
 import services.ProduitService;
 import services.ReclamationCRUD;
 import services.TypeReclamationCRUD;
 public class MainClass {
     public static void main(String[] args) {
-//        ProduitService ps = new ProduitService();
+        
+        ProduitService ps = new ProduitService();
+        FournisseurService fs = new FournisseurService();
+        ProduitFournisseurService pfs = new ProduitFournisseurService();
+        
+        ps.afficherListeProduits();
+        //fs.afficherListeFournisseur();
+
 //        Produit p1 = new Produit("Patate",50,"",2);
 //        Produit p2 = new Produit("Tomate",60,"",5);
 //        Produit p3 = new Produit("Patte",80,"",6);
 //        Produit p4 = new Produit("Lait",7,"",3);
-//      
-//
 //        ps.ajouterProduit(p1);
 //        ps.ajouterProduit(p2);
 //        ps.ajouterProduit(p3);
 //        ps.ajouterProduit(p4);
-      
-      //FournisseurService fs = new FournisseurService();
-      
+
+//        Fournisseur f1 = new Fournisseur(1,"foulen1",55434280,"foulen1@foulen.com");
+//        Fournisseur f2 = new Fournisseur(2,"foulen2",55434280,"foulen2@foulen.com");
+//        fs.ajouterFournisseur(f1);
+//        fs.ajouterFournisseur(f2);
+        
+
+//        ProduitFournisseur pf1 = new ProduitFournisseur(1,"Lait",1);
+//        ProduitFournisseur pf2 = new ProduitFournisseur(1,"Tomate",1);
+//        ProduitFournisseur pf3 = new ProduitFournisseur(1,"Patate",2);
+//        pfs.ajouterProduitFournisseur(pf1);
+//        pfs.ajouterProduitFournisseur(pf2);
+//        pfs.ajouterProduitFournisseur(pf3);
+        
      
      // UtilisateurService sp = new UtilisateurService() ;
 //     

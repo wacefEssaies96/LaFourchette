@@ -68,7 +68,7 @@ public class FournisseurService {
     public List<Fournisseur> afficherListeFournisseur() {
         ArrayList l=new ArrayList(); 
         try {
-            String query2="SELECT * FROM fournisseur f inner join produit_fournisseur pf ON f.idF = pf.idF inner JOIN produit p ON p.nomProd = pf.nomProd";
+            String query2="SELECT * FROM fournisseur f left join produit_fournisseur pf ON f.idF = pf.idF left JOIN produit p ON p.nomProd = pf.nomProd";
             PreparedStatement smt = cnx.prepareStatement(query2);
             Fournisseur f;
             Produit p;

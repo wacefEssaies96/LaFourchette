@@ -29,6 +29,7 @@ import utils.MyConnection;
 import entities.Reclamation;
 import entities.TypeReclamation;
 import java.sql.Connection;
+import java.util.List;
 import services.FournisseurService;
 import services.ProduitFournisseurService;
 import services.ProduitService;
@@ -41,7 +42,11 @@ public class MainClass {
         FournisseurService fs = new FournisseurService();
         ProduitFournisseurService pfs = new ProduitFournisseurService();
         
-        ps.afficherListeProduits();
+        //System.out.println(ps.afficherListeProduits());
+        List list = ps.afficherListeProduits();
+        for(int i=0 ; i<list.size() ; i++){
+            System.out.println(i+" "+list.get(i));
+        }
         //fs.afficherListeFournisseur();
 
 //        Produit p1 = new Produit("Patate",50,"",2);

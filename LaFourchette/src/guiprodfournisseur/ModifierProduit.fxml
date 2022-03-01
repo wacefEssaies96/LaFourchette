@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiprodfournisseur.ModifierProduitController">
+   <children>
+      <Label fx:id="welcome" layoutX="33.0" layoutY="30.0" />
+      <TextField fx:id="nomProd" layoutX="27.0" layoutY="87.0" promptText="Désignation" />
+      <TextField fx:id="quantite" layoutX="27.0" layoutY="153.0" promptText="Quantité" />
+      <TextField fx:id="prix" layoutX="27.0" layoutY="215.0" promptText="Prix" />
+      <Button layoutX="76.0" layoutY="272.0" mnemonicParsing="false" text="Modifier" onAction="#modif" fx:id="modifier" />
+   </children>
+</AnchorPane>

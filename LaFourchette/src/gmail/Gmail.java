@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gmail;
+package gmail;
 
 import java.util.Properties;
 import java.util.logging.Level;
@@ -56,7 +56,7 @@ public class Gmail {
             msg.setSubject("selem");
             msg.setText("message java haha");
             return msg;
-        } catch (Exception ex) {
+        } catch (MessagingException ex) {
             Logger.getLogger(Gmail.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

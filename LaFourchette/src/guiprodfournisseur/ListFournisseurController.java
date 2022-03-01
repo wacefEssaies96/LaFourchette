@@ -60,14 +60,14 @@ public class ListFournisseurController implements Initializable {
     
     FournisseurService fs = new FournisseurService();
     private void refresh(){
-        List fournisseur = fs.afficherFournisseur();
+        List fournisseur = fs.afficherListFournisseur();
         ObservableList list = FXCollections.observableArrayList(fournisseur);
         tableview.setItems(list);
         id.setCellValueFactory(new PropertyValueFactory<>("idF"));
         nom.setCellValueFactory(new PropertyValueFactory<>("nomF"));
         tel.setCellValueFactory(new PropertyValueFactory<>("telephoneF"));
         email.setCellValueFactory(new PropertyValueFactory<>("emailF"));
-        //tel.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        produits.setCellValueFactory(new PropertyValueFactory<>("nomProd"));
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {

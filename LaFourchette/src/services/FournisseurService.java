@@ -13,7 +13,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import utils.MyConnection;
 
 /**
@@ -84,25 +87,53 @@ public class FournisseurService {
         }
         return l;
     }
-    public List<Fournisseur> afficherListeFournisseur() {
+    public List<Fournisseur> getListeFournisseur() {
         ArrayList l=new ArrayList(); 
         try {
-            String query2="SELECT * FROM fournisseur f left join produit_fournisseur pf ON f.idF = pf.idF left JOIN produit p ON p.nomProd = pf.nomProd";
+            String query2="SELECT * FROM fournisseur f left join produit_fournisseur pf ON f.idF = pf.idF left JOIN produit p ON p.nomProd = pf.nomProd order BY f.idF";
             PreparedStatement smt = cnx.prepareStatement(query2);
             Fournisseur f;
             Produit p;
             ResultSet rs= smt.executeQuery();
             while(rs.next()){
-               f=new Fournisseur(rs.getInt("idF"),rs.getString("nomF"),rs.getInt("telephoneF"),rs.getString("emailF"));
+               f = new Fournisseur(rs.getInt("idF"),rs.getString("nomF"),rs.getInt("telephoneF"),rs.getString("emailF"));
                l.add(f);
                p = new Produit(rs.getString("nomProd"),rs.getInt("quantite"),rs.getString("image"),rs.getDouble("prix"));
                l.add(p);
                
             }
-            System.out.println(l);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return l;
+    }
+    public List<Fournisseur> afficherListFournisseur(){
+        List l = getListeFournisseur();
+        List lf = new ArrayList();
+        List lp = new ArrayList();
+        for(int i=0 ; i<l.size() ; i++){
+            if(l.get(i) instanceof Fournisseur){
+                lf.add(l.get(i));
+            }
+            if(l.get(i) instanceof Produit){
+                lp.add(l.get(i));
+            }
+        }
+        List ll = new ArrayList();
+        List listFinal = new ArrayList();
+        for(int i=0 ; i<lf.size() ; i++){
+            if(!verifFournisseur(ll, (Fournisseur) lf.get(i))){
+                ll.add(lf.get(i));
+                listFinal.add(lf.get(i));
+            }
+            listFinal.add(lp.get(i));
+        }
+        return listFinal;
+    }
+    private boolean verifFournisseur(List<Fournisseur> lf,Fournisseur f){
+        for(int i=0 ; i<lf.size() ; i++){
+            return f.getIdF() == lf.get(i).getIdF();
+        }
+        return false;
     }
 }

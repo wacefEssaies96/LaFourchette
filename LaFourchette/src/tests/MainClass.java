@@ -43,12 +43,9 @@ public class MainClass {
         ProduitFournisseurService pfs = new ProduitFournisseurService();
         
         //System.out.println(ps.afficherListeProduits());
-        List list = ps.afficherListeProduits();
-        for(int i=0 ; i<list.size() ; i++){
-            System.out.println(i+" "+list.get(i));
-        }
-        //fs.afficherListeFournisseur();
-
+        
+        System.out.println(fs.afficherListFournisseur());
+        //fs.afficherListFournisseur();
 //        Produit p1 = new Produit("Patate",50,"",2);
 //        Produit p2 = new Produit("Tomate",60,"",5);
 //        Produit p3 = new Produit("Patte",80,"",6);

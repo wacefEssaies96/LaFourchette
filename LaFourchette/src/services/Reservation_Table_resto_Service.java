@@ -5,7 +5,9 @@
  */
 package services;
 
+import entities.Reservation;
 import entities.Table_Resto;
+import entities.Reservation_Table_resto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,68 +20,59 @@ import utils.MyConnection;
  *
  * @author Iheb
  */
-public class Table_RestoService {
+public class Reservation_Table_resto_Service {
 
     Connection cnx;
     
-    public Table_RestoService() {
+    public Reservation_Table_resto_Service() {
         cnx = MyConnection.getInstance().getCnx();
     }
 
     
-    
-    public void ajouter(Table_Resto t) {
+    public void ajouter(Reservation_Table_resto rtr) {
         
         try {
-            String query="INSERT INTO Table_Resto(NbrPlace,Etat,ImageTable,Vip,Prix) values(?,?,?,?,?)";
+            String query="INSERT INTO Reservation_Table_resto(IdR,IdT) values(?,?)";
             PreparedStatement smt = cnx.prepareStatement(query);
-            smt.setInt(1, t.getNbrPlace());
-            smt.setString(2, t.getEtat());
-            smt.setString(3, t.getImageTable());
-            smt.setString(4, t.getVip());
-            smt.setDouble(5, t.getPrix());
+            smt.setInt(1, rtr.getIdR());
+            smt.setInt(2, rtr.getIdT());
             smt.executeUpdate();
-            System.out.println(" Table_Resto ajouter avec succée");
+            System.out.println(" Reservation_Table_resto ajouter avec succée");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     
-    public void modifier(Table_Resto t) {
+    public void modifier(Reservation_Table_resto rtr) {
         try {
-            
-            String query2="update Table_Resto set  NbrPlace=?, Etat=?,ImageTable=?,Vip=?,Prix=? where IdT=?";
+            String query2="update reservation_table_resto set  IdR=?, IdT=?, where IdRTR=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
-            smt.setInt(1, t.getNbrPlace());
-            smt.setString(2, t.getEtat());
-            smt.setString(3, t.getImageTable());
-            smt.setString(4, t.getVip());
-            smt.setDouble(5, t.getPrix());
-            smt.setInt(6, t.getIdT());
+            smt.setInt(1, rtr.getIdR());
+            smt.setInt(2, rtr.getIdT());
+            smt.setInt(3, rtr.getIdRTR());
             if(smt.executeUpdate() == 1){
                 smt.executeUpdate();
-                System.out.println("Table_Resto modifier avec succée");
+                System.out.println("Reservation_Table_resto modifier avec succée");
             }else{
-                System.out.println("Problem : Table_Resto modification echoue \n");
+                System.out.println("Problem : Reservation_Table_resto modification echoue \n");
             }
-            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     
-    public void supprimer(Table_Resto t) {
+    public void supprimer(Reservation_Table_resto rtr) {
         try {
-            String query3="delete from Table_Resto where IdT=?";
+            String query3="delete from reservation_table_resto where IdRTR=?";
             PreparedStatement smt = cnx.prepareStatement(query3);
-            smt.setInt(1, t.getIdT());
+            smt.setInt(1, rtr.getIdRTR());
             if(smt.executeUpdate() == 1){
                 smt.executeUpdate();
-                System.out.println("Table_Resto supprimer avec succée");
+                System.out.println("Reservation_Table_resto supprimer avec succée");
             }else{
-                System.out.println("Problem : Table_Resto supprission echoue \n");
+                System.out.println("Problem : Reservation_Table_resto supprission echoue \n");
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -87,16 +80,20 @@ public class Table_RestoService {
     }
 
     
-    public List<Table_Resto> find() {
+    public List<Reservation_Table_resto> find() {
         ArrayList l=new ArrayList(); 
         
         try {
-            String query4="select * from Table_Resto";
+            String query4="SELECT * FROM reservation_table_resto rtr left join reservation r on r.IdR = rtr.IdR left JOIN table_resto tr on tr.IdT = rtr.IdT";
+            
             PreparedStatement smt = cnx.prepareStatement(query4);
+            Reservation RES;
             Table_Resto TR;
             ResultSet rs= smt.executeQuery();
             while(rs.next()){
+               RES=new Reservation(rs.getInt("IdR"),rs.getInt("IdU"),rs.getDate("DateCreation"),rs.getDate("DateModification"));
                TR=new Table_Resto(rs.getInt("IdT"),rs.getInt("NbrPlace"),rs.getString("Etat"),rs.getString("ImageTable"),rs.getString("Vip"),rs.getDouble("Prix"));
+               l.add(RES);
                l.add(TR);
             }
             System.out.println(l);

@@ -12,65 +12,55 @@ import java.sql.Date;
  * @author Iheb
  */
 public class Reservation {
-    private int idR,idT,idU;
-    private Date dateCreation,dateModification;
+    private int IdR,IdU;
+    private Date DateCreation,DateModification;
 
     public Reservation() {
     }
 
-    public Reservation(int idR, int idT, int idU, Date dateCreation, Date dateModification) {
-        this.idR = idR;
-        this.idT = idT;
-        this.idU = idU;
-        this.dateCreation = dateCreation;
-        this.dateModification = dateModification;
+    public Reservation(int IdR, int IdU, Date DateCreation, Date DateModification) {
+        this.IdR = IdR;
+        this.IdU = IdU;
+        this.DateCreation = DateCreation;
+        this.DateModification = DateModification;
     }
 
     @Override
     public String toString() {
-        return "Reservation{" + "idR=" + idR + ", idT=" + idT + ", idU=" + idU + ", dateCreation=" + dateCreation + ", dateModification=" + dateModification + '}';
+        return "Reservation{" + "IdR=" + IdR + ", IdU=" + IdU + ", DateCreation=" + DateCreation + ", DateModification=" + DateModification + '}';
     }
 
     public int getIdR() {
-        return idR;
+        return IdR;
     }
 
-    public void setIdR(int idR) {
-        this.idR = idR;
-    }
-
-    public int getIdT() {
-        return idT;
-    }
-
-    public void setIdT(int idT) {
-        this.idT = idT;
+    public void setIdR(int IdR) {
+        this.IdR = IdR;
     }
 
     public int getIdU() {
-        return idU;
+        return IdU;
     }
 
-    public void setIdU(int idU) {
-        this.idU = idU;
+    public void setIdU(int IdU) {
+        this.IdU = IdU;
     }
 
     public Date getDateCreation() {
-        return dateCreation;
+        return DateCreation;
     }
 
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setDateCreation(Date DateCreation) {
+        this.DateCreation = DateCreation;
     }
 
     public Date getDateModification() {
-        return dateModification;
+        return DateModification;
     }
 
-    public void setDateModification(Date dateModification) {
-        this.dateModification = dateModification;
+    public void setDateModification(Date DateModification) {
+        this.DateModification = DateModification;
     }
-    
     
     
 }

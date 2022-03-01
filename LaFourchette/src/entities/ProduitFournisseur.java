@@ -14,6 +14,9 @@ public class ProduitFournisseur {
     private String nomProd;
     private int idF;
 
+    public ProduitFournisseur(){
+        
+    }
     public ProduitFournisseur(int id, String nomProd, int idF) {
         this.id = id;
         this.nomProd = nomProd;

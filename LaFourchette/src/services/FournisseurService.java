@@ -24,9 +24,8 @@ public class FournisseurService {
     Connection cnx;
     public FournisseurService() {
          cnx = MyConnection.getInstance().getCnx();
-         System.out.println(cnx);
     }
-    public void ajouterFournisseur(Fournisseur t) {
+    public boolean ajouterFournisseur(Fournisseur t) {
         try {
             String query="INSERT INTO fournisseur(nomF,telephoneF,emailF) values(?,?,?)";
             PreparedStatement smt = cnx.prepareStatement(query);
@@ -34,12 +33,13 @@ public class FournisseurService {
             smt.setInt(2, t.getTelephoneF());
             smt.setString(3, t.getEmailF());
             smt.executeUpdate();
-            System.out.println("ajout avec succee");
+            return true;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            return false;
        }
     }
-    public void modifierFournisseur(Fournisseur t) {
+    public boolean modifierFournisseur(Fournisseur t) {
         try {
             String query2="update fournisseur set  nomF=?, telephoneF=?, emailF=? where idF=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
@@ -48,22 +48,41 @@ public class FournisseurService {
             smt.setString(3, t.getEmailF());
             smt.setInt(4, t.getIdF());
             smt.executeUpdate();
-            System.out.println("modification avec succee");
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
     }
     
-    public void supprimerFournisseur(Fournisseur t) {
+    public boolean supprimerFournisseur(Fournisseur t) {
         try {
             String query2="delete from fournisseur where idF=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
             smt.setInt(1, t.getIdF());
             smt.executeUpdate();
-            System.out.println("suppression avec succee");
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+    public List<Fournisseur> afficherFournisseur(){
+        ArrayList l=new ArrayList(); 
+        try {
+            String query2="SELECT * FROM fournisseur";
+            PreparedStatement smt = cnx.prepareStatement(query2);
+            Fournisseur f;
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+               f=new Fournisseur(rs.getInt("idF"),rs.getString("nomF"),rs.getInt("telephoneF"),rs.getString("emailF"));
+               l.add(f);
+            }
+            System.out.println(l);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        return l;
     }
     public List<Fournisseur> afficherListeFournisseur() {
         ArrayList l=new ArrayList(); 

@@ -5,7 +5,7 @@
  */
 package guiprodfournisseur;
 
-import entities.Produit;
+import entities.Fournisseur;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -18,41 +18,39 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import services.ProduitService;
+import services.FournisseurService;
 
 /**
  *
  * @author wacef
  */
-public class ModifierProduitController implements Initializable {
+public class ModifierFournisseurController implements Initializable {
+
+       @FXML
+    private TextField nom;
     @FXML
-    private TextField nomProd;
+    private TextField tel;
     @FXML
-    private TextField quantite;
-    @FXML
-    private TextField prix;
+    private TextField email;
     @FXML
     private Button modifier;
-    @FXML
-    private ComboBox fournisseurs;
     
-    ProduitService ps = new ProduitService();
-    Produit p;
-    List f;
+    FournisseurService fs = new FournisseurService();
+    Fournisseur f;
+    List l;
     @FXML
     private void modif(){
-        Produit p = new Produit(nomProd.getText(),Integer.parseInt(quantite.getText()),"",Double.parseDouble(prix.getText()));
-        if(ps.modifierProduit(p)){
+        Fournisseur f = new Fournisseur(this.f.getIdF(),nom.getText(),Integer.parseInt(tel.getText()),email.getText());
+        if(fs.modifierFournisseur(f)){
             Alerts.modifAlertSuccess();
         }else{
             Alerts.modifAlertFail();
         }
         modifier.getScene().getWindow().hide();
         try {
-           Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
+           Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
             Stage mainStage = new Stage();
             Scene scene= new Scene(root);
             mainStage.setScene(scene);
@@ -61,16 +59,17 @@ public class ModifierProduitController implements Initializable {
             Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void setProduit(Produit p){
-        this.p = p;
-        nomProd.setText(p.getNomProd());
-        quantite.setText(String.valueOf(String.valueOf(p.getQuantite())));
-        prix.setText(String.valueOf(p.getPrix()));
+    public void setFournisseur(Fournisseur f){
+        this.f = f;
+        nom.setText(f.getNomF());
+        tel.setText(String.valueOf(f.getTelephoneF()));
+        email.setText(String.valueOf(f.getEmailF()));
     }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         
     }
+    
     
 }

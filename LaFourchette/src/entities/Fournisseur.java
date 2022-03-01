@@ -15,7 +15,11 @@ public class Fournisseur {
     private String nomF;
     private int telephoneF;
     private String emailF;
-
+    public Fournisseur( String nomF, int telephoneF, String emailF) {
+        this.nomF = nomF;
+        this.telephoneF = telephoneF;
+        this.emailF = emailF;
+    }
     public Fournisseur(int idF, String nomF, int telephoneF, String emailF) {
         this.idF = idF;
         this.nomF = nomF;

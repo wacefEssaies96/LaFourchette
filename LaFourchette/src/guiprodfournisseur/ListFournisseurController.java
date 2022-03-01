@@ -6,7 +6,6 @@
 package guiprodfournisseur;
 
 import entities.Fournisseur;
-import entities.Produit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -28,25 +27,26 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import services.FournisseurService;
-import services.ProduitService;
 
 /**
- * FXML Controller class
  *
  * @author wacef
  */
-public class ListProduitController implements Initializable {
-
-    @FXML
+public class ListFournisseurController implements Initializable {
+        @FXML
     private AnchorPane pane;
     @FXML
-    private TableView<Produit> tableview;
+    private TableView<Fournisseur> tableview;
     @FXML
-    private TableColumn<Produit, String> nom_prod;
+    private TableColumn<Fournisseur, String> id;
     @FXML
-    private TableColumn<Produit, String> quantite;
+    private TableColumn<Fournisseur, String> nom;
     @FXML
-    private TableColumn<Produit, String> prix;
+    private TableColumn<Fournisseur, String> tel;
+    @FXML
+    private TableColumn<Fournisseur, String> email;
+    @FXML
+    private TableColumn<Fournisseur, String> produits;
     @FXML
     private Button ajouter;
     @FXML
@@ -54,34 +54,31 @@ public class ListProduitController implements Initializable {
     @FXML
     private Button supprimer;
     @FXML
-    private Button affichefournisseur;
-    @FXML 
+    private Button afficheproduit;
+    @FXML
     Label label;
     
-    ProduitService ps = new ProduitService();
-
-    /**
-     * Initializes the controller class.
-     */
+    FournisseurService fs = new FournisseurService();
     private void refresh(){
-        List produits = ps.afficherListeProduits();
-        ObservableList list = FXCollections.observableArrayList(produits);
+        List fournisseur = fs.afficherFournisseur();
+        ObservableList list = FXCollections.observableArrayList(fournisseur);
         tableview.setItems(list);
-        nom_prod.setCellValueFactory(new PropertyValueFactory<>("nomProd"));
-        quantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
-        prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        id.setCellValueFactory(new PropertyValueFactory<>("idF"));
+        nom.setCellValueFactory(new PropertyValueFactory<>("nomF"));
+        tel.setCellValueFactory(new PropertyValueFactory<>("telephoneF"));
+        email.setCellValueFactory(new PropertyValueFactory<>("emailF"));
+        //tel.setCellValueFactory(new PropertyValueFactory<>("prix"));
     }
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL location, ResourceBundle resources) {
         refresh();
-        label.setText("Liste des produits");
+        label.setText("Liste des fournisseurs");
     }
-    
     @FXML
     private void ajouter(ActionEvent event){
         try{
             ajouter.getScene().getWindow().hide();
-            Parent root =FXMLLoader.load(getClass().getResource("AjouterProduit.fxml"));
+            Parent root =FXMLLoader.load(getClass().getResource("AjouterFournisseur.fxml"));
             Stage mainStage = new Stage();
             Scene scene= new Scene(root);
             mainStage.setScene(scene);
@@ -90,14 +87,14 @@ public class ListProduitController implements Initializable {
             JOptionPane.showMessageDialog(null, e);  
         }
     }
-    @FXML
+     @FXML
     private void modifier(ActionEvent event){
-        Produit p = tableview.getSelectionModel().getSelectedItem();
+        Fournisseur f = tableview.getSelectionModel().getSelectedItem();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierProduit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierFournisseur.fxml"));
             Parent root = loader.load();
-            ModifierProduitController controller = loader.getController();
-            controller.setProduit(p);
+            ModifierFournisseurController controller = loader.getController();
+            controller.setFournisseur(f);
             modifier.getScene().setRoot(root);
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
@@ -105,8 +102,8 @@ public class ListProduitController implements Initializable {
     }
     @FXML
     private void supprimer(ActionEvent event){
-        Produit p = tableview.getSelectionModel().getSelectedItem();
-        if(ps.supprimerProduit(p)){
+        Fournisseur f = tableview.getSelectionModel().getSelectedItem();
+        if(fs.supprimerFournisseur(f)){
             Alerts.suppressionAlertSuccess();
             refresh();
         }else{
@@ -114,10 +111,10 @@ public class ListProduitController implements Initializable {
         }
     }
     @FXML
-    private void afficheFournisseurs(ActionEvent event){
+    private void afficheProduits(ActionEvent event){
         try{
-            affichefournisseur.getScene().getWindow().hide();
-            Parent root =FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
+            afficheproduit.getScene().getWindow().hide();
+            Parent root =FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
             Stage mainStage = new Stage();
             Scene scene= new Scene(root);
             mainStage.setScene(scene);
@@ -126,5 +123,5 @@ public class ListProduitController implements Initializable {
             JOptionPane.showMessageDialog(null, e);  
         }
     }
-
+    
 }

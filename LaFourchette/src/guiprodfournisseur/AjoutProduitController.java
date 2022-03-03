@@ -28,14 +28,12 @@ import services.ProduitService;
  */
 public class AjoutProduitController implements Initializable {
        
-    @FXML
-    private TextField nomProd;
-    @FXML
-    private TextField quantite;
-    @FXML
-    private TextField prix;
-    @FXML
-    private Button ajouter;
+    @FXML private TextField nomProd;
+    @FXML private TextField quantite;
+    @FXML private TextField prix;
+    @FXML private Button ajouter;
+    @FXML private Button annuler;
+    
     ProduitService ps = new ProduitService();
 
     /**
@@ -48,22 +46,50 @@ public class AjoutProduitController implements Initializable {
     
     @FXML
     private void insert(ActionEvent event) {
-        Produit p = new Produit(nomProd.getText(),Integer.parseInt(quantite.getText()),"",Double.parseDouble(prix.getText()));
-        if(ps.ajouterProduit(p)){
-            Alerts.ajoutAlertSuccess();
-        }else{
-            Alerts.ajoutAlertFail();
+        if(nomProd.getText().isEmpty() || quantite.getText().isEmpty() || prix.getText().isEmpty()){
+            Alerts.ajoutAlertFailControl();
         }
-        ajouter.getScene().getWindow().hide();
+        else{
+            try{
+                int q = Integer.parseInt(quantite.getText());
+                double pr = Double.parseDouble(prix.getText());
+                Produit p = new Produit(nomProd.getText(),q,"",pr);
+                if(ps.ajouterProduit(p)){
+                    Alerts.ajoutAlertSuccess();
+                }else{
+                    Alerts.ajoutAlertFail();
+                }
+            }catch(NumberFormatException e){
+                Alerts.ajoutAlertFailControl();
+            }
+            
+            ajouter.getScene().getWindow().hide();
+            try {
+               Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
+                Stage mainStage = new Stage();
+                mainStage.setTitle("Liste des Produits");
+                mainStage.setResizable(false);
+                Scene scene= new Scene(root);
+                mainStage.setScene(scene);
+                mainStage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    @FXML
+    private void annuler(){
+        annuler.getScene().getWindow().hide();
         try {
-           Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
             Stage mainStage = new Stage();
+            mainStage.setTitle("Liste des produits");
+            mainStage.setResizable(false);
             Scene scene= new Scene(root);
             mainStage.setScene(scene);
             mainStage.show();
         } catch (IOException ex) {
             Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
+    }   
 }

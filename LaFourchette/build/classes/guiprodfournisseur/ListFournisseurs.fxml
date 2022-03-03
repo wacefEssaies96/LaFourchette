@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiprodfournisseur.ListFournisseurController">
    <children>
@@ -20,7 +21,10 @@
       <Button fx:id="ajouter" layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
       <Button fx:id="modifier" layoutX="111.0" layoutY="78.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
       <Button fx:id="supprimer" layoutX="207.0" layoutY="78.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
-      <Button fx:id="afficheproduit" onAction="#afficheProduits" layoutX="70.0" layoutY="27.0" mnemonicParsing="false" text="Afficher les produits" />
-      <Label fx:id="label" layoutX="336.0" layoutY="53.0" prefHeight="26.0" prefWidth="211.0" style="-fx-alignment: center;" />
+      <Button fx:id="afficheproduit" layoutX="311.0" layoutY="78.0" mnemonicParsing="false" onAction="#afficheProduits" text="Afficher les produits" />
+      <Label fx:id="label" layoutX="108.0" layoutY="14.0" prefHeight="40.0" prefWidth="382.0" style="-fx-alignment: center;">
+         <font>
+            <Font size="28.0" />
+         </font></Label>
    </children>
 </AnchorPane>

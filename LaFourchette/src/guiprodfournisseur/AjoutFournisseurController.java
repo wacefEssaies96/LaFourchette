@@ -6,7 +6,6 @@
 package guiprodfournisseur;
 
 import entities.Fournisseur;
-import entities.Produit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +21,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import services.FournisseurService;
-import services.ProduitService;
 
 /**
  *
@@ -30,14 +28,11 @@ import services.ProduitService;
  */
 public class AjoutFournisseurController implements Initializable {
        
-    @FXML
-    private TextField nom;
-    @FXML
-    private TextField tel;
-    @FXML
-    private TextField email;
-    @FXML
-    private Button ajouter;
+    @FXML private TextField nom;
+    @FXML private TextField tel;
+    @FXML private TextField email;
+    @FXML private Button ajouter;
+    @FXML private Button annuler;
     
     FournisseurService fs = new FournisseurService();
 
@@ -51,22 +46,48 @@ public class AjoutFournisseurController implements Initializable {
     
     @FXML
     private void insert(ActionEvent event) {
-        Fournisseur f = new Fournisseur(nom.getText(),Integer.parseInt(tel.getText()),email.getText());
-        if(fs.ajouterFournisseur(f)){
-            Alerts.ajoutAlertSuccess();
-        }else{
-            Alerts.ajoutAlertFail();
+        if(nom.getText().isEmpty() || tel.getText().isEmpty() || email.getText().isEmpty()){
+            Alerts.ajoutAlertFailControl();
         }
-        ajouter.getScene().getWindow().hide();
+        else{
+            try{
+                int t = Integer.parseInt(tel.getText());
+                Fournisseur f = new Fournisseur(nom.getText(),t,email.getText());
+                if(fs.ajouterFournisseur(f)){
+                    Alerts.ajoutAlertSuccess();
+                }else{
+                    Alerts.ajoutAlertFail();
+                }
+            }catch(NumberFormatException e){
+                Alerts.ajoutAlertFailControl();
+            }
+            ajouter.getScene().getWindow().hide();
+            try {
+               Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
+                Stage mainStage = new Stage();
+                mainStage.setTitle("Liste des fournisseurs");
+                mainStage.setResizable(false);
+                Scene scene= new Scene(root);
+                mainStage.setScene(scene);
+                mainStage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(AjoutFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    @FXML
+    private void annuler(){
+        annuler.getScene().getWindow().hide();
         try {
-           Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
             Stage mainStage = new Stage();
+            mainStage.setTitle("Liste des fournisseurs");
+            mainStage.setResizable(false);
             Scene scene= new Scene(root);
             mainStage.setScene(scene);
             mainStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(AjoutFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
+    } 
 }

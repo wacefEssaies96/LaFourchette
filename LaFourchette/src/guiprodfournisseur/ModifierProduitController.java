@@ -18,7 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import services.ProduitService;
@@ -28,32 +27,41 @@ import services.ProduitService;
  * @author wacef
  */
 public class ModifierProduitController implements Initializable {
-    @FXML
-    private TextField nomProd;
-    @FXML
-    private TextField quantite;
-    @FXML
-    private TextField prix;
-    @FXML
-    private Button modifier;
-    @FXML
-    private ComboBox fournisseurs;
+    
+    @FXML private TextField nomProd;
+    @FXML private TextField quantite;
+    @FXML private TextField prix;
+    @FXML private Button modifier;
+    @FXML private Button annuler;
     
     ProduitService ps = new ProduitService();
     Produit p;
     List f;
     @FXML
     private void modif(){
-        Produit p = new Produit(nomProd.getText(),Integer.parseInt(quantite.getText()),"",Double.parseDouble(prix.getText()));
-        if(ps.modifierProduit(p)){
-            Alerts.modifAlertSuccess();
-        }else{
-            Alerts.modifAlertFail();
+        if(nomProd.getText().isEmpty() || quantite.getText().isEmpty() || prix.getText().isEmpty()){
+            Alerts.ajoutAlertFailControl();
+        }
+        else{
+            try{
+                int q = Integer.parseInt(quantite.getText());
+                double pr = Double.parseDouble(prix.getText());
+                Produit p = new Produit(nomProd.getText(),q,"",pr);
+                if(ps.modifierProduit(p)){
+                    Alerts.modifAlertSuccess();
+                }else{
+                    Alerts.modifAlertFail();
+                }
+            }catch(NumberFormatException e){
+                Alerts.modifAlertFailControl();
+            }
         }
         modifier.getScene().getWindow().hide();
         try {
            Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
             Stage mainStage = new Stage();
+            mainStage.setTitle("Liste des produits");
+            mainStage.setResizable(false);
             Scene scene= new Scene(root);
             mainStage.setScene(scene);
             mainStage.show();
@@ -72,5 +80,20 @@ public class ModifierProduitController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
     }
+    @FXML
+    private void annuler(){
+        annuler.getScene().getWindow().hide();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
+            Stage mainStage = new Stage();
+            mainStage.setTitle("Liste des Produits");
+            mainStage.setResizable(false);
+            Scene scene= new Scene(root);
+            mainStage.setScene(scene);
+            mainStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
     
 }

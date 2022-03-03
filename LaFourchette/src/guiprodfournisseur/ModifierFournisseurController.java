@@ -28,36 +28,44 @@ import services.FournisseurService;
  */
 public class ModifierFournisseurController implements Initializable {
 
-       @FXML
-    private TextField nom;
-    @FXML
-    private TextField tel;
-    @FXML
-    private TextField email;
-    @FXML
-    private Button modifier;
+    @FXML private TextField nom;
+    @FXML private TextField tel;
+    @FXML private TextField email;
+    @FXML private Button modifier;
+    @FXML private Button annuler;
     
     FournisseurService fs = new FournisseurService();
     Fournisseur f;
     List l;
     @FXML
     private void modif(){
-        Fournisseur f = new Fournisseur(this.f.getIdF(),nom.getText(),Integer.parseInt(tel.getText()),email.getText());
-        if(fs.modifierFournisseur(f)){
-            Alerts.modifAlertSuccess();
-        }else{
-            Alerts.modifAlertFail();
+        if(nom.getText().isEmpty() || tel.getText().isEmpty() || email.getText().isEmpty()){
+            Alerts.ajoutAlertFailControl();
         }
-        modifier.getScene().getWindow().hide();
-        try {
-           Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
-            Stage mainStage = new Stage();
-            Scene scene= new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        else{
+            try{
+                int t = Integer.parseInt(tel.getText());
+                Fournisseur f = new Fournisseur(this.f.getIdF(),nom.getText(),t,email.getText());
+                if(fs.modifierFournisseur(f)){
+                    Alerts.modifAlertSuccess();
+                }else{
+                    Alerts.modifAlertFail();
+                } 
+            }catch(NumberFormatException e){
+                Alerts.modifAlertFailControl();
+            }
+            modifier.getScene().getWindow().hide();
+            try {
+               Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
+                Stage mainStage = new Stage();
+                mainStage.setResizable(false);
+                Scene scene= new Scene(root);
+                mainStage.setScene(scene);
+                mainStage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }   
     }
     public void setFournisseur(Fournisseur f){
         this.f = f;
@@ -70,6 +78,20 @@ public class ModifierFournisseurController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         
     }
-    
+    @FXML
+    private void annuler(){
+        annuler.getScene().getWindow().hide();
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
+            Stage mainStage = new Stage();
+            mainStage.setTitle("Liste des fournisseurs");
+            mainStage.setResizable(false);
+            Scene scene= new Scene(root);
+            mainStage.setScene(scene);
+            mainStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    } 
     
 }

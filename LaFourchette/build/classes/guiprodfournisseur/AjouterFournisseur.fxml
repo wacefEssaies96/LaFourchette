@@ -4,13 +4,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiprodfournisseur.AjoutFournisseurController">
    <children>
-      <Label fx:id="welcome" layoutX="33.0" layoutY="30.0" text="Ajouter un founisseur" />
-      <TextField fx:id="nom" layoutX="27.0" layoutY="87.0" promptText="Nom" />
-      <TextField fx:id="tel" layoutX="27.0" layoutY="153.0" promptText="Télèphone" />
-      <TextField fx:id="email" layoutX="27.0" layoutY="215.0" promptText="Email" />
-      <Button fx:id="ajouter" layoutX="76.0" layoutY="272.0" mnemonicParsing="false" onAction="#insert" text="Ajouter" />
+      <Label fx:id="welcome" layoutX="167.0" layoutY="29.0" text="Ajouter un founisseur">
+         <font>
+            <Font size="28.0" />
+         </font></Label>
+      <TextField fx:id="nom" layoutX="104.0" layoutY="87.0" prefHeight="26.0" prefWidth="408.0" promptText="Nom" />
+      <TextField fx:id="tel" layoutX="104.0" layoutY="147.0" prefHeight="26.0" prefWidth="408.0" promptText="Télèphone" />
+      <TextField fx:id="email" layoutX="104.0" layoutY="206.0" prefHeight="26.0" prefWidth="408.0" promptText="Email" />
+      <Button fx:id="ajouter" layoutX="167.0" layoutY="274.0" mnemonicParsing="false" onAction="#insert" text="Ajouter" />
+      <Button fx:id="annuler" onAction="#annuler" layoutX="375.0" layoutY="274.0" mnemonicParsing="false" text="Annuler" />
    </children>
 </AnchorPane>

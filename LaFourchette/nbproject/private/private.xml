@@ -3,15 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/entities/ProduitFournisseur.java</file>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/services/FournisseurService.java</file>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/guiprodfournisseur/ListProduitController.java</file>
             <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/tests/NewFXMain.java</file>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/services/ProduitFournisseurService.java</file>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/guiprodfournisseur/ListFournisseurs.fxml</file>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/guiprodfournisseur/ListProduit.fxml</file>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/guiprodfournisseur/AjouterFournisseur.fxml</file>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/guiprodfournisseur/ListFournisseurController.java</file>
+            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/guiprodfournisseur/AjoutProduitController.java</file>
         </group>
     </open-files>
 </project-private>

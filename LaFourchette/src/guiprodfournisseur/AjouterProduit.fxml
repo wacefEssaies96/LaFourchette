@@ -4,13 +4,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiprodfournisseur.AjoutProduitController">
    <children>
-      <Label fx:id="welcome" layoutX="33.0" layoutY="30.0" />
-      <TextField fx:id="nomProd" layoutX="27.0" layoutY="87.0" promptText="Désignation" />
-      <TextField fx:id="quantite" layoutX="27.0" layoutY="153.0" promptText="Quantité" />
-      <TextField fx:id="prix" layoutX="27.0" layoutY="215.0" promptText="Prix" />
-      <Button layoutX="76.0" layoutY="272.0" mnemonicParsing="false" text="Ajouter" onAction="#insert" fx:id="ajouter" />
+      <Label fx:id="welcome" alignment="CENTER" layoutX="185.0" layoutY="41.0" text="Ajouter un produit">
+         <font>
+            <Font size="28.0" />
+         </font></Label>
+      <TextField fx:id="nomProd" layoutX="101.0" layoutY="108.0" prefHeight="26.0" prefWidth="408.0" promptText="Désignation" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="91.0" />
+      <TextField fx:id="quantite" layoutX="99.0" layoutY="151.0" prefHeight="26.0" prefWidth="408.0" promptText="Quantité" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="91.0" />
+      <TextField fx:id="prix" layoutX="101.0" layoutY="200.0" prefHeight="26.0" prefWidth="408.0" promptText="Prix" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="91.0" />
+      <Button fx:id="ajouter" layoutX="172.0" layoutY="268.0" mnemonicParsing="false" onAction="#insert" prefHeight="26.0" prefWidth="78.0" text="Ajouter" />
+      <Button fx:id="annuler" layoutX="364.0" layoutY="268.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
    </children>
 </AnchorPane>

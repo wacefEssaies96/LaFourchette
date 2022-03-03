@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Skander
+ * @author wacef
  */
 public class NewFXMain extends Application {
     
@@ -24,6 +24,8 @@ public class NewFXMain extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("../guiprodfournisseur/ListProduit.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
+            primaryStage.setTitle("La Fourchette");
+            primaryStage.setResizable(false);
             primaryStage.show();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

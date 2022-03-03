@@ -5,20 +5,24 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiprodfournisseur.ListProduitController">
    <children>
-      <TableView fx:id="tableview" layoutX="6.0" layoutY="119.0" prefHeight="274.0" prefWidth="586.0">
+      <TableView fx:id="tableview" layoutX="6.0" layoutY="119.0" prefHeight="274.0" prefWidth="586.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="7.600000000000023">
         <columns>
-          <TableColumn fx:id="nom_prod" prefWidth="175.0" text="Désignation" />
-          <TableColumn fx:id="quantite" prefWidth="204.0" text="Quantité" />
-            <TableColumn fx:id="prix" prefWidth="180.0" text="Prix" />
+          <TableColumn fx:id="nom_prod" prefWidth="208.79998779296875" text="Désignation" />
+          <TableColumn fx:id="quantite" prefWidth="220.0" text="Quantité" />
+            <TableColumn fx:id="prix" prefWidth="157.5999755859375" text="Prix" />
         </columns>
       </TableView>
-      <Button fx:id="ajouter" layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
-      <Button fx:id="modifier" layoutX="111.0" layoutY="78.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
-      <Button fx:id="supprimer" layoutX="207.0" layoutY="78.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
-      <Button fx:id="affichefournisseur" onAction="#afficheFournisseurs" layoutX="70.0" layoutY="27.0" mnemonicParsing="false" text="Afficher les fournisseurs" />
-      <Label fx:id="label" layoutX="300.0" layoutY="53.0" prefHeight="26.0" prefWidth="211.0" style="-fx-alignment: center;" />
+      <Button fx:id="ajouter" layoutX="22.0" layoutY="78.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="26.0" prefWidth="71.0" text="Ajouter" />
+      <Button fx:id="modifier" layoutX="120.0" layoutY="78.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="80.0" text="Modifier" />
+      <Button fx:id="supprimer" layoutX="224.0" layoutY="78.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="102.0" text="Supprimer" />
+      <Button fx:id="affichefournisseur" layoutX="351.0" layoutY="78.0" mnemonicParsing="false" onAction="#afficheFournisseurs" prefHeight="26.0" prefWidth="184.0" text="Afficher les fournisseurs" />
+      <Label fx:id="label" layoutX="110.0" layoutY="14.0" prefHeight="40.0" prefWidth="374.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="116.0">
+         <font>
+            <Font size="28.0" />
+         </font></Label>
    </children>
 </AnchorPane>

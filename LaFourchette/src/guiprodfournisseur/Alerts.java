@@ -28,7 +28,20 @@ public class Alerts {
         alert.setContentText("Ajout échoué !");
         alert.showAndWait();
     }
-    
+    public static void ajoutAlertFailControl() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Ajout");
+        alert.setHeaderText(null);
+        alert.setContentText("Ajout échoué, veuillez remplir tous les champs correctement ! ");
+        alert.showAndWait();
+    }
+    public static void selectAlertFailControl() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Select");
+        alert.setHeaderText(null);
+        alert.setContentText("Veuillez selectionner une ligne ! ");
+        alert.showAndWait();
+    }
     //Modif
     public static void modifAlertSuccess() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -42,6 +55,13 @@ public class Alerts {
         alert.setTitle("Modif");
         alert.setHeaderText(null);
         alert.setContentText("Modification échouée !");
+        alert.showAndWait();
+    }
+        public static void modifAlertFailControl() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Modification");
+        alert.setHeaderText(null);
+        alert.setContentText("Modification échoué, veuillez remplir tous les champs correctement ! ");
         alert.showAndWait();
     }
     

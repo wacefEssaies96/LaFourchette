@@ -6,6 +6,7 @@
 package guiprodfournisseur;
 
 import entities.Fournisseur;
+import entities.ProduitFournisseur;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -26,6 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import services.FournisseurService;
+import services.ProduitFournisseurService;
 
 /**
  *
@@ -33,20 +35,22 @@ import services.FournisseurService;
  */
 public class ListFournisseurController implements Initializable {
 
-    @FXML private TableView<Fournisseur> tableview;
+    @FXML private TableView tableview;
     @FXML private TableColumn<Fournisseur, String> id;
     @FXML private TableColumn<Fournisseur, String> nom;
     @FXML private TableColumn<Fournisseur, String> tel;
     @FXML private TableColumn<Fournisseur, String> email;
-    @FXML private TableColumn<Fournisseur, String> produits;
+    @FXML private TableColumn<ProduitFournisseur, String> produits;
     @FXML private Button ajouter;
     @FXML private Button modifier;
     @FXML private Button supprimer;
     @FXML private Button afficheproduit;
-    @FXML
-    Label label;
+    @FXML private Button ajoutProduit;
+    @FXML Label label;
     
     FournisseurService fs = new FournisseurService();
+    ProduitFournisseurService pfs = new ProduitFournisseurService();
+    
     private void refresh(){
         List fournisseur = fs.afficherListFournisseur();
         ObservableList list = FXCollections.observableArrayList(fournisseur);
@@ -56,11 +60,44 @@ public class ListFournisseurController implements Initializable {
         tel.setCellValueFactory(new PropertyValueFactory<>("telephoneF"));
         email.setCellValueFactory(new PropertyValueFactory<>("emailF"));
         produits.setCellValueFactory(new PropertyValueFactory<>("nomProd"));
+        
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         refresh();
         label.setText("Liste des fournisseurs");
+    }
+    @FXML
+    private void ajoutProd(){
+        Fournisseur f = (Fournisseur) tableview.getSelectionModel().getSelectedItem();
+        if(f == null)
+            Alerts.selectAlertFailControl();
+        else{
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AjouterFournisseurProd.fxml"));
+                Parent root = loader.load();
+                AjouterFournisseurProdController controller = loader.getController();
+                controller.setFournisseur(f);
+                ajoutProduit.getScene().setRoot(root);
+            } catch (IOException ex) {
+                System.err.println(ex.getMessage());
+            }
+        } 
+    }
+    @FXML
+    private void suppProd(ActionEvent event){
+        ProduitFournisseur pf = (ProduitFournisseur) tableview.getSelectionModel().getSelectedItem();
+        if(pf == null){
+            Alerts.selectAlertFailControl();
+        }
+        else{
+            if(pfs.supprimerProduitFournisseur(pf)){
+                Alerts.suppressionAlertSuccess();
+                refresh();
+            }else{
+                Alerts.suppressionAlertFail();
+            }  
+        }
     }
     @FXML
     private void ajouter(ActionEvent event){
@@ -79,7 +116,7 @@ public class ListFournisseurController implements Initializable {
     }
      @FXML
     private void modifier(ActionEvent event){
-        Fournisseur f = tableview.getSelectionModel().getSelectedItem();
+        Fournisseur f = (Fournisseur) tableview.getSelectionModel().getSelectedItem();
         if(f == null)
             Alerts.selectAlertFailControl();
         else{
@@ -92,12 +129,11 @@ public class ListFournisseurController implements Initializable {
             } catch (IOException ex) {
                 System.err.println(ex.getMessage());
             }
-        }
-//        
+        }    
     }
     @FXML
     private void supprimer(ActionEvent event){
-        Fournisseur f = tableview.getSelectionModel().getSelectedItem();
+        Fournisseur f = (Fournisseur) tableview.getSelectionModel().getSelectedItem();
         if(f == null){
             Alerts.selectAlertFailControl();
         }
@@ -109,7 +145,6 @@ public class ListFournisseurController implements Initializable {
                 Alerts.suppressionAlertFail();
             }  
         }
-        
     }
     @FXML
     private void afficheProduits(ActionEvent event){
@@ -118,7 +153,7 @@ public class ListFournisseurController implements Initializable {
             Parent root =FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
             Stage mainStage = new Stage();
             mainStage.setTitle("Liste des produits");
-                mainStage.setResizable(false);
+            mainStage.setResizable(false);
             Scene scene= new Scene(root);
             mainStage.setScene(scene);
             mainStage.show();

@@ -14,8 +14,9 @@ public class ProduitFournisseur {
     private String nomProd;
     private int idF;
 
-    public ProduitFournisseur(){
-        
+    public ProduitFournisseur(String nomProd, int idF){
+        this.nomProd = nomProd;
+        this.idF = idF;
     }
     public ProduitFournisseur(int id, String nomProd, int idF) {
         this.id = id;

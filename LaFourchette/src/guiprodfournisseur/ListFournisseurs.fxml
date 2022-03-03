@@ -19,12 +19,14 @@
         </columns>
       </TableView>
       <Button fx:id="ajouter" layoutX="14.0" layoutY="78.0" mnemonicParsing="false" onAction="#ajouter" text="Ajouter" />
-      <Button fx:id="modifier" layoutX="111.0" layoutY="78.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
-      <Button fx:id="supprimer" layoutX="207.0" layoutY="78.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
-      <Button fx:id="afficheproduit" layoutX="311.0" layoutY="78.0" mnemonicParsing="false" onAction="#afficheProduits" text="Afficher les produits" />
-      <Label fx:id="label" layoutX="108.0" layoutY="14.0" prefHeight="40.0" prefWidth="382.0" style="-fx-alignment: center;">
+      <Button fx:id="modifier" layoutX="88.0" layoutY="78.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <Button fx:id="supprimer" layoutX="171.0" layoutY="78.0" mnemonicParsing="false" onAction="#supprimer" text="Supprimer" />
+      <Button fx:id="afficheproduit" layoutX="261.0" layoutY="78.0" mnemonicParsing="false" onAction="#afficheProduits" text="Afficher les produits" />
+      <Label fx:id="label" layoutX="16.0" layoutY="14.0" prefHeight="40.0" prefWidth="382.0" style="-fx-alignment: center;">
          <font>
             <Font size="28.0" />
          </font></Label>
+      <Button fx:id="ajoutProduit" layoutX="462.0" layoutY="21.0" mnemonicParsing="false" onAction="#ajoutProd" text="Ajouter un produit" />
+      <Button fx:id="suppProd" layoutX="454.0" layoutY="65.0" mnemonicParsing="false" onAction="#suppProd" text="Supprimer un produit" />
    </children>
 </AnchorPane>

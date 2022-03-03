@@ -7,6 +7,7 @@ package services;
 
 import entities.Fournisseur;
 import entities.Produit;
+import entities.ProduitFournisseur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -90,13 +91,15 @@ public class FournisseurService {
             PreparedStatement smt = cnx.prepareStatement(query2);
             Fournisseur f;
             Produit p;
+            ProduitFournisseur pf;
             ResultSet rs= smt.executeQuery();
             while(rs.next()){
                f = new Fournisseur(rs.getInt("idF"),rs.getString("nomF"),rs.getInt("telephoneF"),rs.getString("emailF"));
                l.add(f);
-               p = new Produit(rs.getString("nomProd"),rs.getInt("quantite"),rs.getString("image"),rs.getDouble("prix"));
-               l.add(p);
-               
+               pf = new ProduitFournisseur(rs.getInt("id"),rs.getString("nomProd"),rs.getInt("idF"));
+              //p = new Produit(rs.getString("nomProd"),rs.getInt("quantite"),rs.getString("image"),rs.getDouble("prix"));
+               l.add(pf);
+               //l.add(p);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -111,7 +114,7 @@ public class FournisseurService {
             if(l.get(i) instanceof Fournisseur){
                 lf.add(l.get(i));
             }
-            if(l.get(i) instanceof Produit){
+            if(l.get(i) instanceof ProduitFournisseur){
                 lp.add(l.get(i));
             }
         }
@@ -128,7 +131,9 @@ public class FournisseurService {
     }
     private boolean verifFournisseur(List<Fournisseur> lf,Fournisseur f){
         for(int i=0 ; i<lf.size() ; i++){
-            return f.getIdF() == lf.get(i).getIdF();
+            if(f.getIdF() == lf.get(i).getIdF()){
+                return true;
+            }
         }
         return false;
     }

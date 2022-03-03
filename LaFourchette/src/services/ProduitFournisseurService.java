@@ -8,10 +8,7 @@ package services;
 import entities.ProduitFournisseur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import utils.MyConnection;
 
 /**
@@ -24,7 +21,7 @@ public class ProduitFournisseurService {
          cnx = MyConnection.getInstance().getCnx();
     }
    
-    public void ajouterProduitFournisseur(ProduitFournisseur t) {
+    public boolean ajouterProduitFournisseur(ProduitFournisseur t) {
         try {
             String query="INSERT INTO produit_fournisseur(nomProd,idF) values(?,?)";
             PreparedStatement smt = cnx.prepareStatement(query);
@@ -32,19 +29,23 @@ public class ProduitFournisseurService {
             smt.setInt(2, t.getIdF());
             smt.executeUpdate();
             System.out.println("ajout avec succee");
+            return true;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
-    public void supprimerProduitFournisseur(ProduitFournisseur t) {
+    public boolean supprimerProduitFournisseur(ProduitFournisseur t) {
         try {
             String query2="delete from produit_fournisseur where id=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
             smt.setInt(1, t.getId());
             smt.executeUpdate();
             System.out.println("suppression avec succee");
+            return true;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        return false;
     }
 }

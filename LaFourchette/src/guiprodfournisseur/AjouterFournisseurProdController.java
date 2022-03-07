@@ -48,6 +48,20 @@ public class AjouterFournisseurProdController implements Initializable {
     ProduitService ps = new ProduitService();
     ProduitFournisseurService pfs = new ProduitFournisseurService();
     
+    private void redirect(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
+            Stage mainStage = new Stage();
+            mainStage.setTitle("Liste des fournisseurs");
+            mainStage.setResizable(false);
+            Scene scene= new Scene(root);
+            mainStage.setScene(scene);
+            mainStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void setFournisseur(Fournisseur f){
         this.f = f;
         nom.setText(this.f.getNomF());
@@ -70,39 +84,19 @@ public class AjouterFournisseurProdController implements Initializable {
         else{
             ProduitFournisseur pp = new ProduitFournisseur(p.getNomProd(),this.f.getIdF());
             if(pfs.ajouterProduitFournisseur(pp)){
-                    Alerts.ajoutAlertSuccess();
-                }else{
-                    Alerts.ajoutAlertFail();
-                }
-            ajouter.getScene().getWindow().hide();
-            try {
-               Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
-                Stage mainStage = new Stage();
-                mainStage.setTitle("Liste des fournisseurs");
-                mainStage.setResizable(false);
-                Scene scene= new Scene(root);
-                mainStage.setScene(scene);
-                mainStage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
+                Alerts.ajoutAlertSuccess();
+            }else{
+                Alerts.ajoutAlertFail();
             }
+            ajouter.getScene().getWindow().hide();
+            this.redirect();
         } 
     }
     
     @FXML
     private void annuler(ActionEvent event){
         annuler.getScene().getWindow().hide();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
-            Stage mainStage = new Stage();
-            mainStage.setTitle("Liste des fournisseur");
-            mainStage.setResizable(false);
-            Scene scene= new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.redirect();
     }
     
 }

@@ -27,11 +27,12 @@ public class FournisseurService {
     }
     public boolean ajouterFournisseur(Fournisseur t) {
         try {
-            String query="INSERT INTO fournisseur(nomF,telephoneF,emailF) values(?,?,?)";
+            String query="INSERT INTO fournisseur(nomF,telephoneF,emailF,lvl) values(?,?,?,?)";
             PreparedStatement smt = cnx.prepareStatement(query);
             smt.setString(1, t.getNomF());
             smt.setInt(2, t.getTelephoneF());
             smt.setString(3, t.getEmailF());
+            smt.setInt(4, 0);
             smt.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -41,12 +42,13 @@ public class FournisseurService {
     }
     public boolean modifierFournisseur(Fournisseur t) {
         try {
-            String query2="update fournisseur set  nomF=?, telephoneF=?, emailF=? where idF=?";
+            String query2="update fournisseur set  nomF=?, telephoneF=?, emailF=?, lvl=? where idF=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
             smt.setString(1, t.getNomF());
             smt.setInt(2, t.getTelephoneF());
             smt.setString(3, t.getEmailF());
-            smt.setInt(4, t.getIdF());
+            smt.setInt(4, t.getLvl());
+            smt.setInt(5, t.getIdF());
             smt.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -94,12 +96,10 @@ public class FournisseurService {
             ProduitFournisseur pf;
             ResultSet rs= smt.executeQuery();
             while(rs.next()){
-               f = new Fournisseur(rs.getInt("idF"),rs.getString("nomF"),rs.getInt("telephoneF"),rs.getString("emailF"));
+               f = new Fournisseur(rs.getInt("idF"),rs.getString("nomF"),rs.getInt("telephoneF"),rs.getString("emailF"),rs.getInt("lvl"));
                l.add(f);
                pf = new ProduitFournisseur(rs.getInt("id"),rs.getString("nomProd"),rs.getInt("idF"));
-              //p = new Produit(rs.getString("nomProd"),rs.getInt("quantite"),rs.getString("image"),rs.getDouble("prix"));
                l.add(pf);
-               //l.add(p);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -137,4 +137,5 @@ public class FournisseurService {
         }
         return false;
     }
+    
 }

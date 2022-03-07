@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/services/FournisseurService.java</file>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/services/ProduitFournisseurService.java</file>
-            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/guiprodfournisseur/ListFournisseurController.java</file>
+            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/guiprodfournisseur/AjoutFournisseurController.java</file>
+            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/entities/Fournisseur.java</file>
+            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/services/ProduitService.java</file>
+            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/guiprodfournisseur/ModifierFournisseurController.java</file>
+            <file>file:/C:/Users/wacef/Documents/GitHub/LaFourchette/src/guiprodfournisseur/Gmail.java</file>
         </group>
     </open-files>
 </project-private>

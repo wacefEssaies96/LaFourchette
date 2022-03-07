@@ -37,6 +37,20 @@ public class ModifierProduitController implements Initializable {
     ProduitService ps = new ProduitService();
     Produit p;
     List f;
+    
+    private void redirect(){
+        try {
+           Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
+            Stage mainStage = new Stage();
+            mainStage.setTitle("Liste des produits");
+            mainStage.setResizable(false);
+            Scene scene= new Scene(root);
+            mainStage.setScene(scene);
+            mainStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     @FXML
     private void modif(){
         if(nomProd.getText().isEmpty() || quantite.getText().isEmpty() || prix.getText().isEmpty()){
@@ -49,6 +63,7 @@ public class ModifierProduitController implements Initializable {
                 Produit p = new Produit(nomProd.getText(),q,"",pr);
                 if(ps.modifierProduit(p)){
                     Alerts.modifAlertSuccess();
+                    ps.verifProduit(p);
                 }else{
                     Alerts.modifAlertFail();
                 }
@@ -57,17 +72,7 @@ public class ModifierProduitController implements Initializable {
             }
         }
         modifier.getScene().getWindow().hide();
-        try {
-           Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
-            Stage mainStage = new Stage();
-            mainStage.setTitle("Liste des produits");
-            mainStage.setResizable(false);
-            Scene scene= new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.redirect();
     }
     public void setProduit(Produit p){
         this.p = p;
@@ -83,17 +88,6 @@ public class ModifierProduitController implements Initializable {
     @FXML
     private void annuler(){
         annuler.getScene().getWindow().hide();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
-            Stage mainStage = new Stage();
-            mainStage.setTitle("Liste des Produits");
-            mainStage.setResizable(false);
-            Scene scene= new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.redirect();
     } 
-    
 }

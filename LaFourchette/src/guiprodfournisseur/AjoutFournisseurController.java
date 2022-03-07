@@ -43,7 +43,19 @@ public class AjoutFournisseurController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+    private void redirect(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
+            Stage mainStage = new Stage();
+            mainStage.setTitle("Liste des fournisseurs");
+            mainStage.setResizable(false);
+            Scene scene= new Scene(root);
+            mainStage.setScene(scene);
+            mainStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AjoutFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     @FXML
     private void insert(ActionEvent event) {
         if(nom.getText().isEmpty() || tel.getText().isEmpty() || email.getText().isEmpty()){
@@ -62,32 +74,12 @@ public class AjoutFournisseurController implements Initializable {
                 Alerts.ajoutAlertFailControl();
             }
             ajouter.getScene().getWindow().hide();
-            try {
-               Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
-                Stage mainStage = new Stage();
-                mainStage.setTitle("Liste des fournisseurs");
-                mainStage.setResizable(false);
-                Scene scene= new Scene(root);
-                mainStage.setScene(scene);
-                mainStage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(AjoutFournisseurController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.redirect();
         }
     }
     @FXML
     private void annuler(){
         annuler.getScene().getWindow().hide();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
-            Stage mainStage = new Stage();
-            mainStage.setTitle("Liste des fournisseurs");
-            mainStage.setResizable(false);
-            Scene scene= new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.redirect();
     } 
 }

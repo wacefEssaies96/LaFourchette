@@ -43,7 +43,19 @@ public class AjoutProduitController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+    private void redirect(){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
+            Stage mainStage = new Stage();
+            mainStage.setTitle("Liste des Produits");
+            mainStage.setResizable(false);
+            Scene scene= new Scene(root);
+            mainStage.setScene(scene);
+            mainStage.show();
+        } catch (IOException ex) {
+             Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     @FXML
     private void insert(ActionEvent event) {
         if(nomProd.getText().isEmpty() || quantite.getText().isEmpty() || prix.getText().isEmpty()){
@@ -62,34 +74,13 @@ public class AjoutProduitController implements Initializable {
             }catch(NumberFormatException e){
                 Alerts.ajoutAlertFailControl();
             }
-            
             ajouter.getScene().getWindow().hide();
-            try {
-               Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
-                Stage mainStage = new Stage();
-                mainStage.setTitle("Liste des Produits");
-                mainStage.setResizable(false);
-                Scene scene= new Scene(root);
-                mainStage.setScene(scene);
-                mainStage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.redirect();
         }
     }
     @FXML
     private void annuler(){
         annuler.getScene().getWindow().hide();
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("ListProduit.fxml"));
-            Stage mainStage = new Stage();
-            mainStage.setTitle("Liste des produits");
-            mainStage.setResizable(false);
-            Scene scene= new Scene(root);
-            mainStage.setScene(scene);
-            mainStage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(AjoutProduitController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.redirect();
     }   
 }

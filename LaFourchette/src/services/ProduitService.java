@@ -6,6 +6,8 @@
 package services;
 import entities.Fournisseur;
 import entities.Produit;
+import entities.ProduitFournisseur;
+import guiprodfournisseur.Gmail;
 
 
 import java.sql.Connection;
@@ -71,22 +73,41 @@ public class ProduitService {
     public List<Produit> afficherListeProduits() {
         ArrayList l=new ArrayList();
         try {
-            //SELECT * FROM produit p left join produit_fournisseur pf ON p.nomProd = pf.nomProd UNION select * from fournisseur f left JOIN produit_fournisseur pf ON f.idF = pf.idF
-//            SELECT * FROM produit p left join produit_fournisseur pf ON p.nomProd = pf.nomProd left JOIN fournisseur f ON f.idF = pf.idF
             String query2="SELECT * FROM produit";
             PreparedStatement smt = cnx.prepareStatement(query2);
             Produit p;
-            Fournisseur f;
             ResultSet rs= smt.executeQuery();
             while(rs.next()){
                p = new Produit(rs.getString("nomProd"),rs.getInt("quantite"),rs.getString("image"),rs.getDouble("prix"));
                l.add(p);
-//               f=new Fournisseur(rs.getInt("idF"),rs.getString("nomF"),rs.getInt("telephoneF"),rs.getString("emailF"));
-//               l.add(f);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         return l;
+    }
+    public void verifProduit(Produit p) {
+        if(p.getQuantite()<10){
+            FournisseurService fs = new FournisseurService();
+            List l = fs.getListeFournisseur();
+            List<Fournisseur> listFournisseur = new ArrayList();
+            for(int i=0 ; i<l.size() ; i++){
+                if(l.get(i) instanceof ProduitFournisseur){
+                    ProduitFournisseur pp = (ProduitFournisseur) l.get(i);
+                    if(pp.getNomProd().equals(p.getNomProd())){
+                        listFournisseur.add((Fournisseur) l.get(i-1));
+                    }
+                }
+            }
+            if(!listFournisseur.isEmpty()){
+                Fournisseur fMax = listFournisseur.get(0);
+                for(Fournisseur f : listFournisseur){
+                    if(f.getLvl()>fMax.getLvl()){
+                        fMax = f;
+                    }
+                }
+                Gmail.sendMail(fMax.getEmailF(), p);
+            }
+        }
     }
 }

@@ -15,16 +15,41 @@ public class Fournisseur {
     private String nomF;
     private int telephoneF;
     private String emailF;
-    public Fournisseur( String nomF, int telephoneF, String emailF) {
+    private int lvl;
+
+    public Fournisseur(String nomF, int telephoneF, String emailF) {
         this.nomF = nomF;
         this.telephoneF = telephoneF;
         this.emailF = emailF;
     }
-    public Fournisseur(int idF, String nomF, int telephoneF, String emailF) {
+    public Fournisseur(int idF,String nomF, int telephoneF, String emailF) {
         this.idF = idF;
         this.nomF = nomF;
         this.telephoneF = telephoneF;
         this.emailF = emailF;
+    }
+    
+    public Fournisseur( String nomF, int telephoneF, String emailF, int lvl) {
+        this.nomF = nomF;
+        this.telephoneF = telephoneF;
+        this.emailF = emailF;
+        this.lvl = lvl;
+    }
+    
+    public Fournisseur(int idF, String nomF, int telephoneF, String emailF, int lvl) {
+        this.idF = idF;
+        this.nomF = nomF;
+        this.telephoneF = telephoneF;
+        this.emailF = emailF;
+        this.lvl = lvl;
+    }
+
+    public int getLvl() {
+        return lvl;
+    }
+
+    public void setLvl(int lvl) {
+        this.lvl = lvl;
     }
 
     public int getIdF() {
@@ -61,8 +86,7 @@ public class Fournisseur {
 
     @Override
     public String toString() {
-        return "Fournisseur{" + "idF=" + idF + ", nomF=" + nomF + ", telephoneF=" + telephoneF + ", emailF=" + emailF + '}';
+        return "Fournisseur{" + "idF=" + idF + ", nomF=" + nomF + ", telephoneF=" + telephoneF + ", emailF=" + emailF + ", lvl=" + lvl + '}';
     }
-    
     
 }

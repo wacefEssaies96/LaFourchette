@@ -92,6 +92,7 @@ public class ModifierProduitController implements Initializable {
         nomProd.setText(p.getNomProd());
         quantite.setText(String.valueOf(String.valueOf(p.getQuantite())));
         prix.setText(String.valueOf(p.getPrix()));
+        this.path_image = p.getImage();
         String imageD = p.getImage();
         String  path = imageD.replace("\\", "/");
         Image imageDview = new Image("file:"+path, 110, 110, false, true);

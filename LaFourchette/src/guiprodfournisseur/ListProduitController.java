@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import services.ProduitService;
@@ -43,6 +44,8 @@ public class ListProduitController implements Initializable {
     @FXML private Button supprimer;
     @FXML private Button affichefournisseur;
     @FXML Label label;
+    @FXML private AnchorPane pane;
+    @FXML private Button recu;
     
     ProduitService ps = new ProduitService();
 
@@ -120,6 +123,22 @@ public class ListProduitController implements Initializable {
             Parent root =FXMLLoader.load(getClass().getResource("ListFournisseurs.fxml"));
             Stage mainStage = new Stage();
             mainStage.setTitle("Liste des fournisseurs");
+            mainStage.setResizable(false);
+            Scene scene= new Scene(root);
+            mainStage.setScene(scene);
+            mainStage.show();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);  
+        }
+    }
+
+    @FXML
+    private void genererPdf(ActionEvent event) {
+        try{
+            recu.getScene().getWindow().hide();
+            Parent root =FXMLLoader.load(getClass().getResource("genererPdf.fxml"));
+            Stage mainStage = new Stage();
+            mainStage.setTitle("Génerer un reçu");
             mainStage.setResizable(false);
             Scene scene= new Scene(root);
             mainStage.setScene(scene);

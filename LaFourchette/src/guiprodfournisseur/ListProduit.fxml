@@ -17,12 +17,13 @@
         </columns>
       </TableView>
       <Button fx:id="ajouter" layoutX="22.0" layoutY="78.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="26.0" prefWidth="71.0" text="Ajouter" />
-      <Button fx:id="modifier" layoutX="120.0" layoutY="78.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="80.0" text="Modifier" />
-      <Button fx:id="supprimer" layoutX="224.0" layoutY="78.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="102.0" text="Supprimer" />
-      <Button fx:id="affichefournisseur" layoutX="351.0" layoutY="78.0" mnemonicParsing="false" onAction="#afficheFournisseurs" prefHeight="26.0" prefWidth="184.0" text="Afficher les fournisseurs" />
+      <Button fx:id="modifier" layoutX="103.0" layoutY="78.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="80.0" text="Modifier" />
+      <Button fx:id="supprimer" layoutX="192.0" layoutY="78.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="95.0" text="Supprimer" />
+      <Button fx:id="affichefournisseur" layoutX="300.0" layoutY="78.0" mnemonicParsing="false" onAction="#afficheFournisseurs" prefHeight="26.0" prefWidth="170.0" text="Afficher les fournisseurs" />
       <Label fx:id="label" layoutX="110.0" layoutY="14.0" prefHeight="40.0" prefWidth="374.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="116.0">
          <font>
             <Font size="28.0" />
          </font></Label>
+      <Button fx:id="recu" layoutX="484.0" layoutY="78.0" mnemonicParsing="false" onAction="#genererPdf" text="Créer un reçu" />
    </children>
 </AnchorPane>

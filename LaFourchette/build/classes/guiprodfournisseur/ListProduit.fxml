@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -25,5 +26,6 @@
             <Font size="28.0" />
          </font></Label>
       <Button fx:id="recu" layoutX="484.0" layoutY="78.0" mnemonicParsing="false" onAction="#genererPdf" text="Créer un reçu" />
+      <TextField fx:id="recherche" layoutX="18.0" layoutY="54.0" promptText="Rechercher un produit" />
    </children>
 </AnchorPane>

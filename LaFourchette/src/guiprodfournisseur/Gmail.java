@@ -57,7 +57,7 @@ public class Gmail {
             msg.setSubject("Commande de produit en ligne");
             String text = "Madame, Monsieur,"
                     + "\nPar la présente, je souhaite effectuer une commande auprès de votre entreprise."
-                    + "\nEn effet, nous voudrons recevoir 100Kg du produit "+p.getNomProd()+"."
+                    + "\nEn effet, nous voudrons recevoir 100 Kg du produit "+p.getNomProd()+"."
                     + "\nOn vous remercie de bien vouloir nous livrer notre commande dans les plus brefs délais à notre adresse Tunis.LaFourchette."
                     + "\nAprès réception de la facture, nous vous ferons parvenir un chèque afin de règler la commande."
                     + "\nJe vous serais reconnaissant de bien vouloir confirmer notre commande, et vous prie d'accepter, Madame, Mosieur, mes respectueuse salutations.";

@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -46,6 +49,7 @@ public class ListProduitController implements Initializable {
     @FXML Label label;
     @FXML private AnchorPane pane;
     @FXML private Button recu;
+    @FXML private TextField recherche;
     
     ProduitService ps = new ProduitService();
 
@@ -53,17 +57,37 @@ public class ListProduitController implements Initializable {
      * Initializes the controller class.
      */
     private void refresh(){
+        label.setText("Liste des produits");
         List produits = ps.afficherListeProduits();
         ObservableList list = FXCollections.observableArrayList(produits);
         tableview.setItems(list);
         nom_prod.setCellValueFactory(new PropertyValueFactory<>("nomProd"));
         quantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
         prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        ObservableList<Produit> dataList = FXCollections.observableArrayList(produits);
+        tableview.setItems(dataList);
+        FilteredList<Produit> filteredData = new FilteredList<>(dataList,b->true);
+        recherche.textProperty().addListener((observable,oldValue,newValue)-> {
+            filteredData.setPredicate(rec-> {
+                if (newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (rec.getNomProd().toLowerCase().indexOf(lowerCaseFilter)!= -1){
+                    return true;
+                }
+                else
+                return false;
+            });
+        });
+        SortedList<Produit> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableview.comparatorProperty());
+        tableview.setItems(sortedData); 
+
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         refresh();
-        label.setText("Liste des produits");
     }
     
     @FXML
@@ -147,5 +171,31 @@ public class ListProduitController implements Initializable {
             JOptionPane.showMessageDialog(null, e);  
         }
     }
-
+    
+    private void searchProd() {
+        nom_prod.setCellValueFactory(new PropertyValueFactory<>("nomProd"));
+        quantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
+        prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+        List produits = ps.afficherListeProduits();
+        ObservableList<Produit> dataList = FXCollections.observableArrayList(produits);
+        tableview.setItems(dataList);
+        FilteredList<Produit> filteredData = new FilteredList<>(dataList,b->true);
+        recherche.textProperty().addListener((observable,oldValue,newValue)-> {
+            filteredData.setPredicate(rec-> {
+                if (newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (rec.getNomProd().toLowerCase().indexOf(lowerCaseFilter)!= -1){
+                    return true;
+                }
+                else
+                return false;
+            });
+        });
+        SortedList<Produit> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableview.comparatorProperty());
+        tableview.setItems(sortedData); 
+    }
+    
 }

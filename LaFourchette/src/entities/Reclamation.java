@@ -27,6 +27,14 @@ public class Reclamation {
         this.description = description;
         this.etatRec = etatRec;
     }
+    
+    public Reclamation(String typeRec, String description, String etatRec) {
+        //this.idRec = idRec;
+        this.typeRec = typeRec;
+        //this.idU = idU;
+        this.description = description;
+        this.etatRec = etatRec;
+    }
 
     public int getIdRec() {
         return idRec;

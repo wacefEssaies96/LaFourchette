@@ -22,6 +22,10 @@ public class TypeReclamation {
         this.refT = refT;
     }
 
+    public TypeReclamation(String string) {
+        this.typeRec = typeRec;
+    }
+
     public String getTypeRec() {
         return typeRec;
     }

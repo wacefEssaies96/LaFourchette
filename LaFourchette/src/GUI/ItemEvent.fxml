@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="tablefrontcommentaire" prefHeight="256.0" prefWidth="271.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemEventController">
+   <children>
+      <Text fx:id="Des" layoutX="111.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="145.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Text>
+      <Text fx:id="Description" layoutX="110.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="92.0" />
+      <ImageView fx:id="image" fitHeight="74.0" fitWidth="168.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="date" layoutX="107.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="98.0" />
+      <Button fx:id="commentaire" layoutX="25.0" layoutY="205.0" mnemonicParsing="false" onMouseClicked="#commentaire" prefHeight="25.0" prefWidth="145.0" stylesheets="@AllStyle.css" text="faire un commantaire ">
+         <styleClass>
+            <String fx:value="button2" />
+            <String fx:value="button1" />
+         </styleClass></Button>
+      <Label layoutX="35.0" layoutY="103.0" text="Designation" />
+      <Label layoutX="35.0" layoutY="126.0" prefHeight="17.0" prefWidth="71.0" text="Description" />
+      <Label layoutX="35.0" layoutY="148.0" prefHeight="17.0" prefWidth="71.0" text="Date" />
+      <Label layoutX="35.0" layoutY="174.0" prefHeight="17.0" prefWidth="98.0" text="nbr Participants" />
+      <Label fx:id="nbrParticipants" layoutX="133.0" layoutY="174.0" prefHeight="17.0" prefWidth="79.0" />
+      <Button fx:id="Participer" layoutX="191.0" layoutY="205.0" mnemonicParsing="false" onAction="#participer" onMouseClicked="#commentaire" stylesheets="@AllStyle.css" text="Partciper">
+         <styleClass>
+            <String fx:value="button2" />
+            <String fx:value="button1" />
+         </styleClass>
+      </Button>
+      <ImageView fitHeight="17.0" fitWidth="27.0" layoutX="221.0" layoutY="24.0" onMouseClicked="#consulterCommentaire" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Commantaire.png" />
+         </image>
+      </ImageView>
+      
+   </children>
+   <styleClass>
+      <String fx:value="fruit-item" />
+      <String fx:value="shadow" />
+   </styleClass>
+</AnchorPane>

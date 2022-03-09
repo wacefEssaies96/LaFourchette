@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 import utils.MyConnection;
 
 
-public class UtilisateurService implements iservice<Utilisateur>{
+/*public class UtilisateurService implements iservice<Utilisateur>{
     Connection cnx;
      public UtilisateurService() {
          cnx = MyConnection.getInstance().getCnx();
@@ -104,4 +104,5 @@ public class UtilisateurService implements iservice<Utilisateur>{
     
     
     
-}}
+}
+}*/

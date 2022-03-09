@@ -12,11 +12,20 @@ package entities;
 public class UtilisateurE {
     int idU,telephone; 
     String nom_prenom,email,mdp,role,adresse;
+    String verif;
+
+    public String getVerif() {
+        return verif;
+    }
+
+    public void setVerif(String verif) {
+        this.verif = verif;
+    }
 
     public UtilisateurE() {
     }
 
-    public UtilisateurE(int idU, int telephone, String nom_prenom, String email, String mdp, String role, String adresse) {
+    public UtilisateurE(int idU, int telephone, String nom_prenom, String email, String mdp, String role, String adresse,String verif) {
         this.idU = idU;
         this.telephone = telephone;
         this.nom_prenom = nom_prenom;
@@ -24,6 +33,7 @@ public class UtilisateurE {
         this.mdp = mdp;
         this.role = role;
         this.adresse = adresse;
+         this.verif = verif;
     }
 
     public UtilisateurE(int telephone, String nom_prenom, String email, String mdp, String role, String adresse) {

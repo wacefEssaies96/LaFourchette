@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="624.0" prefWidth="962.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.NewTwoController">
+   <children>
+      <TableView fx:id="table_view" layoutX="-4.0" layoutY="190.0" onMouseClicked="#select" prefHeight="436.0" prefWidth="969.0">
+         <columns>
+            <TableColumn fx:id="col_idU" prefWidth="68.0" text="ID" />
+            <TableColumn fx:id="col_nom_prenom" prefWidth="112.0" text="Nom_Prenom" />
+            <TableColumn fx:id="col_telephone" prefWidth="115.0" text="Telephone" />
+            <TableColumn fx:id="col_adresse" prefWidth="129.0" text="Adresse" />
+            <TableColumn fx:id="col_picture" prefWidth="103.0" text="Picture" />
+            <TableColumn fx:id="col_salaire" prefWidth="148.0" text="salaire" />
+            <TableColumn fx:id="col_job" prefWidth="118.0" text="job_EM" />
+         </columns>
+      </TableView>
+      <AnchorPane layoutX="-2.0" layoutY="-2.0" prefHeight="193.0" prefWidth="969.0" styleClass="button-design" stylesheets="@design.css">
+         <children>
+            <Label layoutX="163.0" layoutY="57.0" text="Tableau des Employées" textFill="#d39090">
+               <font>
+                  <Font size="64.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

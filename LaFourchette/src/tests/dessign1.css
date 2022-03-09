@@ -1,0 +1,90 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16 févr. 2022, 14:45:12
+    Author     : pc
+*/
+
+.textfield-design{
+    -fx-background-color:transparent ;
+  -fx-background-radius: 5px;
+   -fx-border-color: linear-gradient(to bottom right,#3a4f93,#a43189);
+    -fx-border-radius: 5px;
+    -fx-font-size1: 5px; 
+    
+    
+    
+}
+.insert-image-button{
+    -fx-background-color: transparent;
+    -fx-text-fill: #3a4f93;
+    -fx-cursor: hand;
+    -fx-font-size1: 15px;
+    
+}
+.insert-button{
+    -fx-background-color: #333;
+    -fx-border-radius: 20px;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+    -fx-font-size1: 15px;
+    
+}
+.insert-button:hover{
+    -fx-background-color:#4677ba;
+    
+    
+}
+.update-button{
+    -fx-background-color: #333;
+    -fx-border-radius: 20px;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand;
+    -fx-font-size1: 15px;
+    
+} 
+.update-button:hover{
+    -fx-background-color:#34966c;
+    
+    
+}
+.clear-button{
+    -fx-background-color: #333;
+    -fx-border-radius: 20px;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand; 
+    -fx-font-size1: 15px;
+}
+.clear-button:hover{
+    -fx-background-color:#b53a92;
+    
+    
+}
+.Delet-button{
+    
+   -fx-background-color: #333;
+    -fx-border-radius: 20px;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand; 
+    -fx-font-size1: 15px;
+}
+.Delet-button:hover{
+    -fx-background-color:#b83b4c;
+    
+    
+}
+.print-button{
+  -fx-background-color: #333;
+    -fx-border-radius: 20px;
+    -fx-text-fill: #fff;
+    -fx-cursor: hand; 
+    -fx-font-size1: 15px;
+}
+.print-button:hover{
+    -fx-background-color:#2e90cc;
+    
+    
+}

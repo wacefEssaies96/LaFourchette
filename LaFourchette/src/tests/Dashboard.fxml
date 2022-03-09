@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="677.0" styleClass="login-bg" stylesheets="@design.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardController">
+   <children>
+      <Button fx:id="btn" mnemonicParsing="false" onAction="#button" styleClass="button-design" stylesheets="@design.css" text="Click button to connect" textFill="#333633">
+         <font>
+            <Font name="Arial Narrow" size="20.0" />
+         </font>
+      </Button>
+      <StackPane prefHeight="454.0" prefWidth="377.0">
+         <children>
+            <Label text="Loading . . ." textFill="#f5f4f4">
+               <font>
+                  <Font name="Microsoft Sans Serif" size="16.0" />
+               </font></Label>
+            <Circle fx:id="c1" fill="#bd808000" radius="162.0" stroke="#5236f5" strokeType="INSIDE" strokeWidth="7.0" style="-fx-stroke-dash-array: 60;" />
+            <Circle fx:id="c2" fill="#f0eded00" radius="109.0" stroke="#1f84dd" strokeType="INSIDE" strokeWidth="7.0" style="-fx-stroke-dash-array: 30;" />
+            <Circle fx:id="c3" fill="#2197ff00" radius="51.0" stroke="#2fa5d0" strokeType="INSIDE" strokeWidth="7.0" style="-fx-stroke-dash-array: 40;" />
+         </children>
+      </StackPane>
+   </children>
+</HBox>

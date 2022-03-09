@@ -10,29 +10,76 @@ package entities;
  * @author anice
  */
 public class Utilisateur {
-    private int idU,Telephone;
+    private int idU,telephone;
     private String nom_prenom;
     private String email;
-    private String mdp;
+    private String password;
     private String role;
     private String adresse;
+    private String picture;
+    public static Utilisateur Current_User;
+    private String verif;
+
     
-    public Utilisateur(int id_U, String nom_prenom, int Telephone, String email, String mdp, String role, String adresse) {
-        this.idU = id_U;
-        this.Telephone = Telephone;
+     public Utilisateur(int idU, String nom_prenom, int telephone, String email, String password,String adresse, String role,String picture) {
+        this.idU = idU;
+        this.telephone = telephone;
         this.nom_prenom = nom_prenom;
         this.email = email;
-        this.mdp = mdp;
+        this.password = password;
+         this.adresse = adresse;
         this.role = role;
-        this.adresse = adresse;
+         this.picture = picture;
+     
+       
     }
 
-    public int getId_U() {
+    public static Utilisateur getCurrent_User() {
+        return Current_User;
+    }
+
+    public static void setCurrent_User(Utilisateur Current_User) {
+        Utilisateur.Current_User = Current_User;
+    }
+    
+    public Utilisateur(int idU, String nom_prenom, int telephone, String email, String password,String adresse, String role,String picture,String verif) {
+        this.idU = idU;
+        this.telephone = telephone;
+        this.nom_prenom = nom_prenom;
+        this.email = email;
+        this.password = password;
+         this.adresse = adresse;
+        this.role = role;
+         this.picture = picture;
+         this.verif = verif;
+       
+    }
+     public Utilisateur() {
+        
+       
+    }
+     public String getVerif() {
+        return verif;
+    }
+
+    public void setVerif(String verif) {
+        this.verif = verif;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public int getIdU() {
         return idU;
     }
 
     public int getTelephone() {
-        return Telephone;
+        return telephone;
     }
 
     public String getNom_prenom() {
@@ -44,7 +91,7 @@ public class Utilisateur {
     }
 
     public String getMdp() {
-        return mdp;
+        return password;
     }
 
     public String getRole() {
@@ -55,12 +102,12 @@ public class Utilisateur {
         return adresse;
     }
 
-    public void setId_U(int id_U) {
-        this.idU = id_U;
+    public void setIdU(int idU) {
+        this.idU = idU;
     }
 
     public void setTelephone(int Telephone) {
-        this.Telephone = Telephone;
+        this.telephone = Telephone;
     }
 
     public void setNom_prenom(String nom_prenom) {
@@ -72,7 +119,7 @@ public class Utilisateur {
     }
 
     public void setMdp(String mdp) {
-        this.mdp = mdp;
+        this.password = mdp;
     }
 
     public void setRole(String role) {
@@ -85,7 +132,7 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return "Utilisateur{" + "id_U=" + idU + ", Telephone=" + Telephone + ", nom_prenom=" + nom_prenom + ", email=" + email + ", mdp=" + mdp + ", role=" + role + ", adresse=" + adresse + '}';
+        return "Utilisateur{" + "idU=" + idU + ", telephone=" + telephone + ", nom_prenom=" + nom_prenom + ", email=" + email + ", password=" + password + ", role=" + role + ", adresse=" + adresse + ", picture=" + picture + ", verif=" + verif + '}';
     }
 
     

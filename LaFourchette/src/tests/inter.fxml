@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="664.0" prefWidth="1064.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.InterController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="1064.0" styleClass="login-bg" stylesheets="@design.css">
+         <children>
+            <Label fx:id="tunivators1" layoutX="231.0" layoutY="77.0" prefHeight="109.0" prefWidth="395.0" text="LaFourchette">
+               <font>
+                  <Font name="Sylfaen" size="64.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="121.0" fitWidth="167.0" layoutX="14.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="171.0" fitWidth="160.0" layoutX="18.0" layoutY="15.0">
+               <image>
+                  <Image url="@../../../../../../Downloads/logo1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <GridPane layoutX="150.0" layoutY="278.0" prefHeight="257.0" prefWidth="710.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="262.0" minHeight="10.0" prefHeight="262.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="user_button" contentDisplay="TOP" mnemonicParsing="false" onAction="#click1" prefHeight="273.0" prefWidth="355.0" text="Gestion Utilisateur">
+               <graphic>
+                  <FontAwesomeIconView fill="#662d60" glyphName="USER_PLUS" size="120" wrappingWidth="102.0" />
+               </graphic>
+            </Button>
+            <Button fx:id="employees_button" contentDisplay="TOP" mnemonicParsing="false" onAction="#click" prefHeight="273.0" prefWidth="355.0" text="Gestion Employées" GridPane.columnIndex="1">
+               <graphic>
+                  <FontAwesomeIconView fill="#662d60" glyphName="USER" size="120" wrappingWidth="102.0" />
+               </graphic>
+            </Button>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

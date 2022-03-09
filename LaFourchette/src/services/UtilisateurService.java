@@ -15,18 +15,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import utils.MyConnection;
 
 
 public class UtilisateurService implements iservice<Utilisateur>{
-    Connection cnx;
-     public UtilisateurService() {
-         cnx = MyConnection.getInstance().getCnx();
-    }
-   
+       Connection cnx=MyConnection.getInstance().getCnx();
+     
+        
+         public static UtilisateurService instance ;
+         
+         
+         public static UtilisateurService getInstance(){
+             
+             
+             if (instance==null)
+                 instance=new UtilisateurService();
+             return instance ;
+         }
+    public ObservableList<Utilisateur> find;
+
     @Override
     public void ajouter(Utilisateur t) {
-        
+              
             try {
           
            String query="INSERT INTO Utilisateur(nom_prenom,Telephone,email,mdp,role,adresse) values(?,?,?,?,?,?)";
@@ -45,11 +56,9 @@ public class UtilisateurService implements iservice<Utilisateur>{
        }
     }
 
-   
-   
     @Override
     public void modifier(Utilisateur t) {
-         try {
+           try {
        String query2="update Utilisateur set  nom_prenom=?, Telephone=?, email=?, mdp=?, role=?, adresse=? where idU=?";
                 PreparedStatement smt = cnx.prepareStatement(query2);
                 
@@ -59,49 +68,35 @@ public class UtilisateurService implements iservice<Utilisateur>{
                 smt.setString(4, t.getMdp());
                 smt.setString(5, t.getRole());
                 smt.setString(6, t.getAdresse());
-                smt.setInt(7, t.getId_U());
+                smt.setInt(7, t.getIdU());
                 smt.executeUpdate();
                 System.out.println("modification avec succee");
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
-    }}
-    
+    }
+    }
+
     @Override
     public void supprimer(Utilisateur t) {
-         try {
+             try {
        String query2="delete from Utilisateur where idU=?";
                 PreparedStatement smt = cnx.prepareStatement(query2);
-                smt.setInt(1, t.getId_U());
+                smt.setInt(1, t.getIdU());
                 smt.executeUpdate();
                 System.out.println("suppression avec succee");
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
-    }}
+    }
+    }
 
     @Override
     public List<Utilisateur> find() {
-        ArrayList l=new ArrayList(); 
-        
-        try {
-       String query2="select * from Utilisateur";
-                PreparedStatement smt = cnx.prepareStatement(query2);
-                Utilisateur p;
-                ResultSet rs= smt.executeQuery();
-                while(rs.next()){
-                   p=new Utilisateur(rs.getInt("idU"),rs.getString("nom_prenom"),rs.getInt("Telephone"),rs.getString("email"),rs.getString("mdp"),rs.getString("role"),rs.getString("adresse"));
-                   l.add(p);
-                }
-                System.out.println(l);
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-        return l;
-
+         
+         
+         
+         
+    }
+   
     
-
-
-    
-    
-    
-}}

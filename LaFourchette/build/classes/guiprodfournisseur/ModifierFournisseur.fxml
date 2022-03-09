@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiprodfournisseur.ModifierFournisseurController">
+   <children>
+      <Label fx:id="welcome" layoutX="155.0" layoutY="28.0" text="Modifier un fournisseur">
+         <font>
+            <Font size="28.0" />
+         </font></Label>
+      <TextField fx:id="nom" layoutX="96.0" layoutY="88.0" prefHeight="26.0" prefWidth="408.0" promptText="Nom" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="96.0" />
+      <TextField fx:id="tel" layoutX="96.0" layoutY="143.0" prefHeight="26.0" prefWidth="408.0" promptText="Télèphone" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="96.0" />
+      <TextField fx:id="email" layoutX="96.0" layoutY="200.0" prefHeight="26.0" prefWidth="408.0" promptText="Email" AnchorPane.leftAnchor="96.0" AnchorPane.rightAnchor="96.0" />
+      <Button fx:id="modifier" layoutX="138.0" layoutY="297.0" mnemonicParsing="false" onAction="#modif" prefHeight="26.0" prefWidth="78.0" text="Modifier" />
+      <Button fx:id="annuler" layoutX="362.0" layoutY="297.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
+      <ComboBox fx:id="level" layoutX="96.0" layoutY="246.0" prefWidth="150.0" promptText="Level" visibleRowCount="5" />
+   </children>
+</AnchorPane>

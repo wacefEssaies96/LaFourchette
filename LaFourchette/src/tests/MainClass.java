@@ -32,6 +32,9 @@ import services.ReservationService;
 import services.Table_RestoService;
 import utils.MyConnection;
 
+import services.FournisseurService;
+import services.ProduitFournisseurService;
+import services.ProduitService;
 
 public class MainClass extends Application {
      private double x=0;
@@ -111,6 +114,17 @@ public class MainClass extends Application {
     */
    
     }
+public class MainClass {
+    public static void main(String[] args) {
+        
+        ProduitService ps = new ProduitService();
+        FournisseurService fs = new FournisseurService();
+        ProduitFournisseurService pfs = new ProduitFournisseurService();
+        
+        //System.out.println(ps.afficherListeProduits());
+        //System.out.println(fs.afficherListFournisseur());
+        //fs.afficherListFournisseur();
+
 
     /**
      * @param args the command line arguments

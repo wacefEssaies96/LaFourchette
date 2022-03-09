@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guiprodfournisseur.ListProduitController">
+   <children>
+      <TableView fx:id="tableview" layoutX="6.0" layoutY="119.0" prefHeight="274.0" prefWidth="586.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="7.600000000000023">
+        <columns>
+          <TableColumn fx:id="nom_prod" prefWidth="208.79998779296875" text="Désignation" />
+          <TableColumn fx:id="quantite" prefWidth="220.0" text="Quantité" />
+            <TableColumn fx:id="prix" prefWidth="157.5999755859375" text="Prix" />
+        </columns>
+      </TableView>
+      <Button fx:id="ajouter" layoutX="22.0" layoutY="78.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="26.0" prefWidth="71.0" text="Ajouter" />
+      <Button fx:id="modifier" layoutX="103.0" layoutY="78.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="80.0" text="Modifier" />
+      <Button fx:id="supprimer" layoutX="192.0" layoutY="78.0" mnemonicParsing="false" onAction="#supprimer" prefHeight="26.0" prefWidth="95.0" text="Supprimer" />
+      <Button fx:id="affichefournisseur" layoutX="300.0" layoutY="78.0" mnemonicParsing="false" onAction="#afficheFournisseurs" prefHeight="26.0" prefWidth="170.0" text="Afficher les fournisseurs" />
+      <Label fx:id="label" layoutX="110.0" layoutY="14.0" prefHeight="40.0" prefWidth="374.0" style="-fx-alignment: center;" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="116.0">
+         <font>
+            <Font size="28.0" />
+         </font></Label>
+      <Button fx:id="recu" layoutX="484.0" layoutY="78.0" mnemonicParsing="false" onAction="#genererPdf" text="Créer un reçu" />
+      <TextField fx:id="recherche" layoutX="18.0" layoutY="54.0" promptText="Rechercher un produit" />
+   </children>
+</AnchorPane>

@@ -5,30 +5,30 @@
  */
 package entities;
 
+import java.sql.Date;
 /**
  *
  * @author user
  */
 public class Evenement {
-    int idE,nbrParticipants,idU; 
-    String designationE,descriptionE,imageE; 
+    
+     private  int idE,nbrParticipants; 
+     private  String designationE,descriptionE,imageE;
+    // String commentaire ;
+     private Date  dateE ;
 
     public Evenement() {
     }
 
-    public Evenement(int nbrParticipants, int idU, String designationE, String descriptionE, String imageE) {
-        this.nbrParticipants = nbrParticipants;
-        this.idU = idU;
-        this.designationE = designationE;
-        this.descriptionE = descriptionE;
-        this.imageE = imageE;
-    }
-
-    public Evenement(int nbrParticipants, String designationE, String descriptionE, String imageE) {
+    public Evenement(int idE, String designationE,String descriptionE,Date dateE,String imageE, int nbrParticipants) {
+        this.idE = idE;
+        
         this.nbrParticipants = nbrParticipants;
         this.designationE = designationE;
         this.descriptionE = descriptionE;
+        //this.commentaire = commentaire;
         this.imageE = imageE;
+        this.dateE = dateE;
     }
 
     public int getIdE() {
@@ -39,37 +39,39 @@ public class Evenement {
         this.idE = idE;
     }
 
-    public int getNbr_Participants() {
+    
+
+    public int getNbrParticipants() {
         return nbrParticipants;
     }
 
-    public void setNbr_Participants(int Nbr_Participants) {
-        this.nbrParticipants = Nbr_Participants;
+    public void setNbrParticipants(int nbrParticipants) {
+        this.nbrParticipants = nbrParticipants;
     }
 
-    public int getIdU() {
-        return idU;
-    }
-
-    public void setIdU(int idU) {
-        this.idU = idU;
-    }
-
-    public String getDesignation() {
+    public String getDesignationE() {
         return designationE;
     }
 
-    public void setDesignation(String Designation) {
-        this.designationE = Designation;
+    public void setDesignationE(String designationE) {
+        this.designationE = designationE;
     }
 
-    public String getDescription() {
+    public String getDescriptionE() {
         return descriptionE;
     }
 
-    public void setDescription(String Description) {
-        this.descriptionE = Description;
+    public void setDescriptionE(String descriptionE) {
+        this.descriptionE = descriptionE;
     }
+
+   /* public String getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(String commentaire) {
+        this.commentaire = commentaire;
+    }*/
 
     public String getImageE() {
         return imageE;
@@ -79,9 +81,34 @@ public class Evenement {
         this.imageE = imageE;
     }
 
+    public Date getDateE() {
+        return dateE;
+    }
+
+    public void setDateE(Date dateE) {
+        this.dateE = dateE;
+    }
+
+   /* @Override
+    public String toString() {
+        return "Evenement{" + "idE=" + idE + ", idU=" + idU + ", nbrParticipants=" + nbrParticipants + ", designationE=" + designationE + ", descriptionE=" + descriptionE + ", commentaire=" + commentaire + ", imageE=" + imageE + ", dateE=" + dateE + '}';
+    }*/
+
     @Override
     public String toString() {
-        return "Evenement{" + "idE=" + idE + ", Nbr_Participants=" + nbrParticipants + ", idU=" + idU + ", Designation=" + designationE + ", Description=" + descriptionE + ", imageE=" + imageE + '}';
+        return "Evenement{" + "idE=" + idE + ", nbrParticipants=" + nbrParticipants + ", designationE=" + designationE + ", descriptionE=" + descriptionE + ", imageE=" + imageE + ", dateE=" + dateE + '}';
     }
+
+    
+    
+
+
+
+
+ 
+
+ 
+
+
     
 }

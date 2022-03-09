@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="EvenementAnchorPane" prefHeight="689.0" prefWidth="1167.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EvenementController">
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+   <children>
+      <HBox prefHeight="66.0" prefWidth="1234.0" styleClass="topbar-background" stylesheets="@AllStyle.css">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Evenements&amp; commentaires">
+               <font>
+                  <Font name="Agency FB Bold" size="30.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <HBox.margin>
+                  <Insets left="300.0" right="200.0" top="10.0" />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <HBox layoutX="189.0" layoutY="131.0" prefHeight="534.0" prefWidth="835.0">
+         <children>
+            <ScrollPane fx:id="scroll" prefHeight="534.0" prefWidth="815.0" stylesheets="@style.css">
+               <content>
+                  <GridPane fx:id="grid" prefHeight="60.0" prefWidth="0.0">
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+      <Button fx:id="AjouterEvenement1" layoutX="939.0" layoutY="79.0" mnemonicParsing="false" onAction="#ajoutEV" prefHeight="36.0" prefWidth="159.0" styleClass="button1" text="Ajouter un Evenement" />
+      <Button fx:id="tri" layoutX="403.0" layoutY="79.0" mnemonicParsing="false" onAction="#tri" text="tri" />
+      <Button fx:id="pdf" layoutX="291.0" layoutY="79.0" mnemonicParsing="false" onAction="#pdf" text="pdf" />
+      <TextField fx:id="recherche" layoutX="477.0" layoutY="79.0" onKeyPressed="#recherche" promptText="recherche" />
+      <ImageView fitHeight="40.0" fitWidth="51.0" layoutX="867.0" layoutY="77.0" onMouseClicked="#stat" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Staticone.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -7,7 +7,7 @@ package services;
 import entities.Fournisseur;
 import entities.Produit;
 import entities.ProduitFournisseur;
-import guiprodfournisseur.Gmail;
+import guiprodfournisseur.GmailFournisseur;
 
 
 import java.sql.Connection;
@@ -106,7 +106,7 @@ public class ProduitService {
                         fMax = f;
                     }
                 }
-                Gmail.sendMail(fMax.getEmailF(), p);
+                GmailFournisseur.sendMail(fMax.getEmailF(), p);
             }
         }
     }

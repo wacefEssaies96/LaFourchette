@@ -7,7 +7,7 @@ package GUI;
 
 import entities.Commentaire;
 import entities.Evenement;
-import guiprodfournisseur.Gmail;
+import guiprodfournisseur.GmailFournisseur;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;

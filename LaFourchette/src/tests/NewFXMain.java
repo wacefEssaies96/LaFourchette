@@ -24,23 +24,24 @@ import javafx.stage.Stage;
 public class NewFXMain extends Application {
     
     @Override
-    public void start(Stage stage) {
-      try {
-            Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("tableview.css").toExternalForm());
-            stage.setTitle("La Fourchette");
-            stage.show();
-        } catch (IOException ex) {
-           System.out.println(ex.getMessage());
-        }
-    public void start(Stage primaryStage) throws IOException {
- //Parent root = FXMLLoader.load(getClass().getResource("../GUI/EvenementFront.fxml"));
-Parent root = FXMLLoader.load(getClass().getResource("../GUI/Evenement.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+//    public void start(Stage stage) {
+//      try {
+//            Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+//            Scene scene = new Scene(root);
+//            stage.setScene(scene);
+//            scene.getStylesheets().add(getClass().getResource("tableview.css").toExternalForm());
+//            stage.setTitle("La Fourchette");
+//            stage.show();
+//        } catch (IOException ex) {
+//           System.out.println(ex.getMessage());
+//        }
+//    }
+//    public void start(Stage primaryStage) throws IOException {
+// //Parent root = FXMLLoader.load(getClass().getResource("../GUI/EvenementFront.fxml"));
+//Parent root = FXMLLoader.load(getClass().getResource("../GUI/Evenement.fxml"));
+//            Scene scene = new Scene(root);
+//            primaryStage.setScene(scene);
+////            primaryStage.show();
     public void start(Stage stage) {
       try {
             Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));

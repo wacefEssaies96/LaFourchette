@@ -6,6 +6,8 @@
 package tests;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,15 +22,16 @@ import javafx.stage.Stage;
  *
  * @author barki
  */
-public class NewFXMain extends Application {
+
+
+public class Medeet extends Application {
     
     @Override
-    public void start(Stage stage) {
-      try {
-            Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
+    public void start(Stage stage)  {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("tableview.css").toExternalForm());
             stage.setTitle("La Fourchette");
             stage.show();
         } catch (IOException ex) {

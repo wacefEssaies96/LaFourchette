@@ -20,15 +20,14 @@ import javafx.stage.Stage;
  *
  * @author barki
  */
-public class NewFXMain extends Application {
+public class Dashboard extends Application {
     
-    @Override
+     @Override
     public void start(Stage stage) {
       try {
             Parent root = FXMLLoader.load(getClass().getResource("dashboard.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("tableview.css").toExternalForm());
             stage.setTitle("La Fourchette");
             stage.show();
         } catch (IOException ex) {

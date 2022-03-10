@@ -103,4 +103,24 @@ public class Reservation_Table_resto_Service {
         return l;
     }
     
+     public List<Table_Resto> mesReservation(int id) {
+        ArrayList l=new ArrayList(); 
+        
+        try {
+            String query5="SELECT * FROM reservation_table_resto rtr left join table_resto tr on tr.IdT = rtr.IdT where rtr.IdR = '"+id+"'";
+            
+            PreparedStatement smt = cnx.prepareStatement(query5);
+            Reservation RES;
+            Table_Resto TR;
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+               TR=new Table_Resto(rs.getInt("IdT"),rs.getInt("NbrPlace"),rs.getString("Etat"),rs.getString("ImageTable"),rs.getString("Vip"),rs.getDouble("Prix"));
+               l.add(TR);
+            }
+            System.out.println(l);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return l;
+    }
 }

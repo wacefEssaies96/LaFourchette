@@ -106,5 +106,71 @@ public class ReservationService {
         }
         return l;
     }
+    public List<Reservation> MesResrvation(int iduser) {
+        ArrayList l=new ArrayList(); 
+        
+        try {
+            String query4="SELECT * FROM reservation r inner join reservation_table_resto rtr on r.IdR = rtr.IdR inner JOIN table_resto tr on tr.IdT = rtr.IdT left join decoration_reservation dr on dr.IdR = r.IdR left join decoration d on d.IdD = dr.IdD where IdU=?  ";
+            
+            PreparedStatement smt = cnx.prepareStatement(query4);
+            smt.setInt(1, iduser);
+            Reservation RES;
+            Table_Resto TR;
+            Decoration D;
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+               RES=new Reservation(rs.getInt("IdR"),rs.getInt("IdU"),rs.getDate("DateCreation"),rs.getDate("DateModification"));
+              TR=new Table_Resto(rs.getInt("IdT"),rs.getInt("NbrPlace"),rs.getString("Etat"),rs.getString("ImageTable"),rs.getString("Vip"),rs.getDouble("Prix"));
+              D=new Decoration(rs.getInt("IdD"),rs.getString("Nom"),rs.getDouble("Prix"),rs.getString("ImageD"));
+               l.add(RES);
+//               l.add(TR);
+//               
+//               l.add(D);
+            }
+            System.out.println(l);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return l;
+    }
     
+    public List<Reservation> afficher() {
+        ArrayList l=new ArrayList(); 
+        
+        try {
+            String query5="SELECT * FROM reservation ";
+            
+            PreparedStatement smt = cnx.prepareStatement(query5);
+            Reservation RES;
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+               RES=new Reservation(rs.getInt("IdR"),rs.getInt("IdU"),rs.getDate("DateCreation"),rs.getDate("DateModification"));
+               l.add(RES);
+            }
+            System.out.println(l);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return l;
+    }
+    public Reservation RecuperedernierReservation(int iduser) {
+        Reservation SeulRes=new Reservation(); 
+        
+        try {
+            String query5="SELECT * FROM reservation where idU=?";
+            
+            PreparedStatement smt = cnx.prepareStatement(query5);
+            smt.setInt(1, iduser);
+            Reservation RES;
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+               RES=new Reservation(rs.getInt("IdR"),rs.getInt("IdU"),rs.getDate("DateCreation"),rs.getDate("DateModification"));
+               SeulRes=RES;
+            }
+            System.out.println(SeulRes.toString());
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return SeulRes;
+    }
 }

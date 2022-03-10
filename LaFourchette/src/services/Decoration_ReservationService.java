@@ -103,4 +103,24 @@ public class Decoration_ReservationService {
         return l;
     }
     
+    
+     public List<Decoration> mesReservation(int id) {
+        ArrayList l=new ArrayList(); 
+        
+        try {
+            String query5="SELECT * FROM Decoration_Reservation dr left join decoration d on d.IdD = dr.IdD where dr.IdR = '"+id+"'";
+            
+            PreparedStatement smt = cnx.prepareStatement(query5);
+            Decoration D;
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+               D=new Decoration(rs.getInt("IdD"),rs.getString("Nom"),rs.getDouble("Prix"),rs.getString("ImageD"));
+               l.add(D);
+            }
+            System.out.println(l);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return l;
+    }
 }

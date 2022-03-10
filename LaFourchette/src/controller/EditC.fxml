@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.EditCController">
+    <children>
+      <BorderPane fx:id="BorderPane" prefHeight="580.0" prefWidth="383.0">
+         <center>
+            <Pane minWidth="-Infinity" prefHeight="178.0" prefWidth="197.0" styleClass="button-background" stylesheets="@../CSS/AllStyle.css" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="70.0" layoutY="142.0" minWidth="-Infinity" opacity="0.33" prefHeight="189.0" prefWidth="243.0">
+                     <children>
+                        <TextField fx:id="tfidC" prefHeight="64.0" prefWidth="305.0" promptText="IdC">
+                           <font>
+                              <Font name="Bernard MT Condensed" size="16.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="tfidU" promptText="IdU" VBox.vgrow="ALWAYS" />
+                        <TextField fx:id="tfetatC" promptText="Etat" />
+                        <TextField fx:id="tflivraison" prefHeight="31.0" prefWidth="345.0" promptText="livraison" />
+                        <TextField fx:id="tfprixC" promptText="prix" />
+                     </children>
+                  </VBox>
+                  <Button cancelButton="true" layoutX="221.0" layoutY="415.0" onAction="#onCancel" prefHeight="15.0" prefWidth="91.0" text="_Cancel">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="editbutton" defaultButton="true" layoutX="70.0" layoutY="415.0" onAction="#modifierFormateur" prefHeight="15.0" prefWidth="91.0" text="_Apply">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </center></BorderPane>
+   </children>
+</AnchorPane>

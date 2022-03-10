@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entites;
+package entities;
 
 /**
  *
@@ -13,20 +13,22 @@ package entites;
 public class commande {
     private int idC;
     private int idU;
-    private String reference;
+   // private String referenceP;
     private String etatC;
     private String livraison;
     private double  prixC;
     public  commande() {};
 
-    public commande(int idC, int idU, String reference, String etatC, String livraison, double prix) {
+    public commande(int idC, int idU, String etatC, String livraison, double prixC) {
         this.idC = idC;
         this.idU = idU;
-        this.reference = reference;
+     //   this.referenceP = referenceP;
         this.etatC = etatC;
         this.livraison = livraison;
         this.prixC = prixC;
     }
+
+  
 
     public void setIdC(int idC) {
         this.idC = idC;
@@ -36,10 +38,10 @@ public class commande {
         this.idU = idU;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
+   /* public void setReferenceP(String referenceP) {
+        this.referenceP = referenceP;
     }
-
+*/
     public void setEtatC(String etatC) {
         this.etatC = etatC;
     }
@@ -59,10 +61,10 @@ public class commande {
     public int getIdU() {
         return idU;
     }
-
-    public String getReference() {
-        return reference;
-    }
+/*
+    public String getReferenceP() {
+        return referenceP;
+    }*/
 
     public String getEtatC() {
         return etatC;
@@ -78,8 +80,10 @@ public class commande {
 
     @Override
     public String toString() {
-        return "commande{" + "idC=" + idC + ", idU=" + idU + ", reference=" + reference + ", etatC=" + etatC + ", livraison=" + livraison + ", prix=" + prixC + '}';
+        return "commande{" + "idC=" + idC + ", idU=" + idU + ", etatC=" + etatC + ", livraison=" + livraison + ", prixC=" + prixC + '}';
     }
+
+    
 
      
     

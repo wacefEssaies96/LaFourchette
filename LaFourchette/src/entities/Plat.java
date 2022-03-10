@@ -27,6 +27,8 @@ public class Plat {
         this.nomProd = nomProd;
     }
 
+    
+
     public String getReference() {
         return reference;
     }

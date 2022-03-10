@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="leftmain" prefHeight="689.0" prefWidth="1051.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PlatguiController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <VBox layoutX="688.0" layoutY="138.0" prefHeight="237.0" prefWidth="176.0" spacing="1.0">
+         <children>
+            <Label text="Nom">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label text="Designation">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label text="Prix">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label text="Description">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label text="Produits">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="822.0" layoutY="115.0" prefHeight="207.0" prefWidth="225.0" spacing="10.0">
+         <children>
+            <TextField fx:id="tfreference" styleClass="input" stylesheets="@../CSS/AllStyle.css" />
+            <TextField fx:id="tfdesignation" styleClass="input" stylesheets="@../CSS/AllStyle.css" />
+            <TextField fx:id="tfprix" styleClass="input" stylesheets="@../CSS/AllStyle.css" />
+            <TextField fx:id="tfdescription" styleClass="input" stylesheets="@../CSS/AllStyle.css" />
+            <TextField fx:id="tfproduits" styleClass="input" stylesheets="@../CSS/AllStyle.css" />
+            
+         </children>
+      </VBox>
+      <TableView fx:id="tvplat" layoutX="14.0" layoutY="159.0" prefHeight="482.0" prefWidth="628.0" stylesheets="@../CSS/AllStyle.css">
+        <columns>
+          <TableColumn fx:id="colnom" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="coldesignation" prefWidth="112.0" text="Designation" />
+            <TableColumn fx:id="colprix" prefWidth="112.0" text="Prix" />
+            <TableColumn fx:id="coldescription" prefWidth="101.0" text="Description" />
+            <TableColumn fx:id="colimage" prefWidth="123.0" text="Image" />
+            <TableColumn fx:id="colproduit" prefWidth="104.0" text="Produits" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnajouter" layoutX="890.0" layoutY="548.0" mnemonicParsing="false" onAction="#ajouterplat" prefHeight="36.0" prefWidth="197.0" styleClass="button1" stylesheets="@../CSS/AllStyle.css" text="Ajouter" />
+      <Button fx:id="btnmodifier" layoutX="890.0" layoutY="589.0" mnemonicParsing="false" onAction="#modifierplat" prefHeight="36.0" prefWidth="197.0" styleClass="button1" stylesheets="@../CSS/AllStyle.css" text="Modifier" />
+      <Button fx:id="btnsupprimer" layoutX="890.0" layoutY="633.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="36.0" prefWidth="197.0" styleClass="button1" stylesheets="@../CSS/AllStyle.css" text="Supprimer" />
+      <Label fx:id="imagepath" layoutX="803.0" layoutY="517.0" prefHeight="31.0" prefWidth="149.0" />
+      <Group layoutX="227.0" layoutY="421.0" />
+      <Pane layoutX="766.0" layoutY="355.0" minWidth="-Infinity" prefHeight="178.0" prefWidth="197.0" AnchorPane.leftAnchor="766.0">
+         <children>
+            <Button fx:id="insertimagebutton" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#insertImage" prefHeight="136.0" prefWidth="176.0" text="Insert" textFill="#8a1919" wrapText="true" />
+            <ImageView fx:id="imageview" fitHeight="123.0" fitWidth="164.0" layoutX="19.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <HBox alignment="CENTER" layoutX="3.0" layoutY="29.0" prefHeight="51.0" prefWidth="1082.0" spacing="15.0" styleClass="topbar-background" stylesheets="@../CSS/AllStyle.css">
+         <children>
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="30">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </FontAwesomeIconView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Food">
+               <font>
+                  <Font name="Agency FB Bold" size="30.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+         </children>
+      </HBox>
+      <Label layoutX="38.0" layoutY="102.0" text="Search">
+         <font>
+            <Font name="Agency FB Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfrecherche" layoutX="96.0" layoutY="95.0" prefHeight="31.0" prefWidth="179.0" promptText="Search By Id">
+         <font>
+            <Font name="Agency FB Bold" size="20.0" />
+         </font>
+      </TextField>
+      <Button fx:id="btvoirmenu" layoutX="700.0" layoutY="610.0" mnemonicParsing="false" onAction="#menuadminAction" text="voir menu" />
+      <Button fx:id="openvideo" layoutX="711.0" layoutY="654.0" mnemonicParsing="false" onAction="#openfilemethode" text="Load video " />
+   </children>
+</AnchorPane>

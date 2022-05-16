@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#ajouterTypeRec" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: E2D6E6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.DashboardController">
+   <children>
+      <TabPane layoutY="83.0" prefHeight="620.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Réclamation">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="560.0" prefWidth="1173.0">
+                     <children>
+                        <TableView fx:id="tableView" layoutX="40.0" layoutY="31.0" prefHeight="420.0" prefWidth="1093.0">
+                          <columns>
+                              <TableColumn fx:id="idRec" prefWidth="81.0" text="id Rec" />
+                              <TableColumn fx:id="typeRec" prefWidth="181.0" text="Type Rec" />
+                              <TableColumn fx:id="idU" prefWidth="76.0" text="idU" />
+                            <TableColumn fx:id="description" prefWidth="176.0" text="Description" />
+                            <TableColumn fx:id="etatRec" prefWidth="166.0" text="Etat Rec" />
+                              <TableColumn fx:id="colEdit" prefWidth="125.0" text="Edit" />
+                              <TableColumn fx:id="coldelete" prefWidth="133.0" text="Delete" />
+                              <TableColumn fx:id="colmail" prefWidth="138.0" text="Mail" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="1030.0" layoutY="469.0" mnemonicParsing="false" onMouseClicked="#refreshReclamation" prefHeight="48.0" prefWidth="112.0" styleClass="button-design" stylesheets="@design.css" text="Refresh" textFill="WHITE" />
+                        <Button layoutX="920.0" layoutY="469.0" mnemonicParsing="false" onAction="#pdf_rec" prefHeight="48.0" prefWidth="104.0" styleClass="button-design" stylesheets="@design.css" text="Génerer PDF" textFill="WHITE" />
+                        <TextField fx:id="filterRec" layoutX="125.0" layoutY="469.0" prefHeight="48.0" prefWidth="348.0" promptText="Search ..." styleClass="textfield-design" stylesheets="@design.css" />
+                        <Label layoutX="44.0" layoutY="478.0" text="Search :">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                        <Button layoutX="700.0" layoutY="469.0" mnemonicParsing="false" onAction="#sendMailRec" prefHeight="48.0" prefWidth="96.0" styleClass="button-design" stylesheets="@design.css" text="Music" textFill="WHITE" />
+                        <Button layoutX="802.0" layoutY="469.0" mnemonicParsing="false" onAction="#statRec" prefHeight="48.0" prefWidth="112.0" styleClass="button-design" stylesheets="@design.css" text="Statistiques" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Type réclamation">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="14.0" layoutY="150.0" text="Réference :" />
+                        <Label layoutX="18.0" layoutY="196.0" text="Type Rec :" />
+                        <TextField fx:id="refT" layoutX="98.0" layoutY="145.0" prefHeight="31.0" prefWidth="212.0" promptText="Réference ..." />
+                        <TextField fx:id="tftypeRec" layoutX="98.0" layoutY="191.0" prefHeight="31.0" prefWidth="213.0" promptText="Type réclamation ..." />
+                        <Button layoutX="114.0" layoutY="239.0" mnemonicParsing="false" onAction="#clearTypeRec" prefHeight="41.0" prefWidth="96.0" text="Clear" textFill="#8547ff" />
+                        <Button layoutX="13.0" layoutY="239.0" mnemonicParsing="false" onAction="#ajouterTypeRec" prefHeight="41.0" prefWidth="96.0" text="Ajouter" textFill="#8547ff" />
+                       
+                        <TableView fx:id="tableViewT" layoutX="320.0" layoutY="21.0" prefHeight="477.0" prefWidth="835.0">
+                          <columns>
+                            <TableColumn fx:id="col_ref" prefWidth="69.33331298828125" text="Réference" />
+                            <TableColumn fx:id="col_typeRec" prefWidth="149.33331298828125" text="Type réclamation" />
+                              <TableColumn fx:id="colEdit2" minWidth="0.0" prefWidth="55.33331298828125" text="Edit" />
+                              <TableColumn fx:id="coldelete2" prefWidth="52.66668701171875" text="Delete" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="216.0" layoutY="239.0" mnemonicParsing="false" onAction="#refreshTypeRec" prefHeight="41.0" prefWidth="96.0" text="Refresh" textFill="#8547ff" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          
+        </tabs>
+      </TabPane>
+      <HBox layoutX="-132.0" layoutY="16.0" prefHeight="100.0" prefWidth="1072.0">
+         <children>
+            <Separator prefWidth="200.0" visible="false" />
+            <Separator prefWidth="200.0" visible="false" />
+            <Separator prefWidth="200.0" visible="false" />
+            <Label text="Réclamations" textFill="#662d60">
+               <font>
+                  <Font name="Sylfaen" size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+       <FontAwesomeIconView fill="#662d60" glyphName="HOME" layoutX="28.0" layoutY="69.0" onMouseClicked="#homeIner" size="50" styleClass="btn" />
+   </children>
+</AnchorPane>

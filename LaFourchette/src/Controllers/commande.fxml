@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="652.0" prefWidth="1041.0" style="-fx-background-color: E2D6E6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CommandeController">
+   <children>
+      <HBox alignment="CENTER" layoutX="-12.0" prefHeight="51.0" prefWidth="1098.0" spacing="15.0" styleClass="topbar-background" stylesheets="@../CSS/AllStyle.css">
+         <children>
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="30">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </FontAwesomeIconView>
+            <Text fill="#662d60" strokeType="OUTSIDE" strokeWidth="0.0" text="Commande">
+               <font>
+                  <Font name="Agency FB Bold" size="30.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+         </children>
+      </HBox>
+      <TableView fx:id="tvcommande" layoutX="34.0" layoutY="83.0" prefHeight="420.0" prefWidth="1023.0">
+        <columns>
+          <TableColumn fx:id="colidC" prefWidth="75.0" text="IdC" />
+          <TableColumn fx:id="colidU" prefWidth="159.0" text="idU" />
+            <TableColumn fx:id="colreferenceplat" prefWidth="265.0" text="referenceplat" />
+            <TableColumn fx:id="colquantity" prefWidth="185.0" text="quantity" />
+            <TableColumn fx:id="collivraison" prefWidth="176.0" text="livraison" />
+            <TableColumn fx:id="colprixC" prefWidth="158.0" text="prixC" />
+        </columns>
+      </TableView>
+      <Button layoutX="339.0" layoutY="533.0" mnemonicParsing="false" onAction="#modifiercommande" styleClass="button-design" stylesheets="@../tests/design.css" text="Modifier" textFill="WHITE" />
+      <Button fx:id="btsupprimercommande" layoutX="436.0" layoutY="533.0" mnemonicParsing="false" onAction="#supprimer" styleClass="button-design" stylesheets="@../tests/design.css" text="Supprimer" textFill="WHITE" />
+      <Button fx:id="btsendmail" layoutX="546.0" layoutY="533.0" mnemonicParsing="false" onAction="#sendmailaction" styleClass="button-design" stylesheets="@../tests/design.css" text="Send mail" textFill="WHITE" />
+      <Button fx:id="btpdf" layoutX="667.0" layoutY="533.0" mnemonicParsing="false" onAction="#pdfaction" styleClass="button-design" stylesheets="@../tests/design.css" text="PDF" textFill="WHITE" />
+      <FontAwesomeIconView fill="#662d60" glyphName="HOME" layoutX="38.0" layoutY="79.0" onMouseClicked="#homeIner" size="50" styleClass="btn" text="" />
+   </children>
+</AnchorPane>

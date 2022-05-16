@@ -5,7 +5,6 @@
  */
 package tests;
 
-import entities.Reclamation;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,13 +53,10 @@ public class Gmail {
             Message msg = new MimeMessage(session);
             msg.setFrom(new InternetAddress(myAccountEmail));
             msg.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
-            msg.setSubject("Réclamation");
-            String text = "Madame, Monsieur,"
-                    + "\nOn vous informe que votre réclamation est traitée"
-                     ;
-            msg.setText(text);
+            msg.setSubject("selem");
+            msg.setText("message java haha");
             return msg;
-        } catch (MessagingException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Gmail.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package services;
 
-import entites.commande;
+import entities.Plat;
+import entities.commande;
+import entities.commandeplat;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -14,6 +16,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 //import java.util.logging.Logger;
 import utils.MyConnection;
 /**
@@ -25,7 +29,7 @@ public class gestionCommande {
    public gestionCommande () {
          cnx = MyConnection.getInstance().getCnx();
     }
-   
+    
      /* public void ajoutercommande(){
           try {
               String requete="INSERT INTO commande (idU,reference,etatC,livraison,prixC)" +
@@ -43,13 +47,15 @@ public class gestionCommande {
 
       public void ajoutercommande(commande c){
           try {
-              String requete="INSERT INTO Commande (idU,reference,etatC,livraison,prixC)" +
+               
+       
+              String requete="INSERT INTO Commande (etatC,livraison,prixC)" +
                       "VALUES (?,?,?,?,?)";
               //requete dynamique requete pre compilé 
               PreparedStatement pst = cnx.prepareStatement(requete);
               pst.setInt(1,c.getIdU());
-              pst.setString(2,c.getReference());
-              pst.setString(3,c.getEtatC());
+              pst.setString(2,c.getReferenceplat());
+              pst.setInt(3,c.getQuantity());
                pst.setString(4,c.getLivraison());
                 pst.setDouble(5,c.getPrixC());
                  
@@ -64,15 +70,16 @@ public class gestionCommande {
       }
       public void modifier(commande c) {
          try {
-       String query2="update Commande set idU=?,reference=?,etatC=?,livraison=?,prixC=?  where idC=?";
+       String query2="update commande set  idU=?,referenceplat=?,quantity=?,livraison=?,prixC=?  where idC=?";
                 PreparedStatement pst = cnx.prepareStatement(query2);
-                
-               pst.setInt(1,c.getIdU());
-              pst.setString(2,c.getReference());
-              pst.setString(3,c.getEtatC());
+                pst.setInt(6,c.getIdC()); 
+             pst.setInt(1,c.getIdU());
+              
+         pst.setString(2,c.getReferenceplat());
+              pst.setInt(3,c.getQuantity());
                pst.setString(4,c.getLivraison());
                 pst.setDouble(5,c.getPrixC());
-                pst.setInt(6,c.getIdC());
+                
                 pst.executeUpdate();
                 System.out.println("modification mrigla");
             } catch (SQLException ex) {
@@ -91,20 +98,105 @@ public class gestionCommande {
                 System.out.println(ex.getMessage());
     }}
 
-public List<commande> affichercommande(){
+    
+    
+    public List<commande> afficherCommande() throws SQLException{
+        ArrayList l=new ArrayList(); 
+       
+        try { 
+       
+            String query2="select * from commande  ";
+            PreparedStatement smt = cnx.prepareStatement(query2);
+            commande co;
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+              // co=new commande(rs.getInt("idC"),rs.getInt("idU"),rs.getString("referenceP"),rs.getString("etatC"),rs.getString("livraison"),rs.getDouble("prixC"));
+               co=new commande(rs.getInt("idC"),rs.getString("referenceplat"),rs.getInt("idU"),rs.getInt("quantity"),rs.getString("livraison"),rs.getDouble("prixC"));
+               l.add(co);
+            }
+          //  System.out.println();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return l;
+    }
+    
+    public List<gestioncommandeplat> getListecommande() {
+        ArrayList l=new ArrayList(); 
+        try {
+            
+            String query2="SELECT DISTINCT * FROM commande c left join commandeplat cp ON c.idC = cp.idC left JOIN plat p ON p.reference = cp.reference order BY c.idC";
+            PreparedStatement smt = cnx.prepareStatement(query2);
+            commande c;
+            Plat p;
+            commandeplat cp;
+            ResultSet rs= smt.executeQuery();
+            while(rs.next()){
+             //  c=new commande(rs.getInt("idC"),rs.getInt("idU"),rs.getString("referenceP"),rs.getString("etatC"),rs.getString("livraison"),rs.getDouble("prixC"));
+               c=new commande(rs.getInt("idC"),rs.getString("referenceplat"),rs.getInt("idU"),rs.getInt("quantity"),rs.getString("livraison"),rs.getDouble("prixC"));
+               l.add(c);
+               cp= new commandeplat(rs.getInt("id"),rs.getInt("idC"),rs.getString("reference")); 
+               l.add(cp);
+               p= new Plat(rs.getString("reference"), rs.getString("designation"), rs.getDouble("prix"),rs.getString("description"),rs.getString ("imageP"), rs.getString("nomProd"));
+              
+              
+             l.add(p); 
+            }
+            System.out.println(l);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return l;
+    }
+    
+ public  List<commande> afficherListcommande(){
+        List l = getListecommande();
+        List lf = new ArrayList();
+        List lp = new ArrayList();
+        for(int i=0 ; i<l.size() ; i++){
+            if(l.get(i) instanceof commande){
+                lf.add(l.get(i));
+            }
+            if(l.get(i) instanceof commandeplat){
+                lp.add(l.get(i));
+            }
+        }
+        List ll = new ArrayList();
+        List listFinal = new ArrayList();
+        for(int i=0 ; i<lf.size() ; i++){
+            if(!verifcommande(ll, (commande) lf.get(i))){
+                ll.add(lf.get(i));
+                listFinal.add(lf.get(i));
+            }
+            listFinal.add(lp.get(i));
+        }
+        return listFinal;
+    
+}
+  private boolean verifcommande(List<commande> lf,commande f){
+        for(int i=0 ; i<lf.size() ; i++){
+            if(f.getIdC() == lf.get(i).getIdC()){
+                return true;
+            }
+        }return false;
+  } 
+
+
+
+ public List<commande> affichercommande(){
                   List<commande> myList = new ArrayList<>();
           try {
-              String requete3="SELECT * FROM personne";
+              String requete3="SELECT * FROM Commande";
               Statement st =cnx.prepareStatement(requete3);
              ResultSet rs= st.executeQuery(requete3); 
                     // resultSet type de retour de executeQuery
                 while(rs.next()){
                     commande p =new commande();
                     p.setIdC(rs.getInt("idC")); //num de la colonne
-                    p.setIdU(rs.getInt("idU"));
-                    p.setReference(rs.getString("reference"));
+                //    p.setIdU(rs.getInt("idU"));
+                 //   p.setReferenceP(rs.getString("referenceP"));
                     p.setLivraison(rs.getString("livraison"));
-                    p.setEtatC(rs.getString("EtatC"));   
+                    p.setQuantity(rs.getInt("Quantity"));   
                     p.setPrixC(rs.getDouble("prixC"));
                     myList.add(p);
                 }    
@@ -114,4 +206,5 @@ public List<commande> affichercommande(){
          }
         return myList;   //mylist n'est pas visible dans le try
 }
+ 
 }

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="Controllers.ListePlatFXMLController">
+     
+   <children>
+      <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="435.0" styleClass="right-bar" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
+                     <children>
+                         <FontAwesomeIconView fill="#662d60" glyphName="HOME" onMouseClicked="#homeIner" size="50" styleClass="btn" />
+                        <Separator prefHeight="0.0" prefWidth="21.0" visible="false" />
+                        <Label prefHeight="52.0" prefWidth="218.0" text="Réservation" textFill="#662d60">
+                           <font>
+                              <Font name="Sylfaen" size="41.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="110.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="btn_Commander" contentDisplay="CENTER" mnemonicParsing="false" onAction="#Commander" prefHeight="39.0" prefWidth="144.0" styleClass="button-design" stylesheets="@../tests/design.css" text="Réserver" textFill="#dddddd">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="chosenFruitCard" alignment="CENTER" prefHeight="367.0" prefWidth="370.0" style="-fx-background-color: E2D6E6;">
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox prefHeight="61.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="fruitNameLable" prefHeight="45.0" prefWidth="155.0" text="4" textFill="#3c0e61">
+                                 <font>
+                                    <Font name="Cambria" size="36.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label prefHeight="48.0" prefWidth="119.0" text="Place" textFill="#3c0e61">
+                                 <font>
+                                    <Font name="Cambria" size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="60.0" prefWidth="335.0">
+                           <children>
+                              <Label prefHeight="57.0" prefWidth="171.0" text="Prix" textFill="#3c0e61">
+                                 <font>
+                                    <Font name="Cambria" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="fruitPriceLabel" prefHeight="57.0" prefWidth="171.0" text="10 DT" textFill="#3c0e61">
+                                 <font>
+                                    <Font name="Cambria" size="36.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ImageView fx:id="fruitImg" fitHeight="170.0" fitWidth="228.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../ph%20fourchette/t1.PNG" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Button fx:id="btn_ajPanier" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ajPanier" prefHeight="50.0" prefWidth="270.0" styleClass="button-design" stylesheets="@../tests/design.css" text="Ajouter au Reservation" textFill="#dddddd">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <ScrollPane fx:id="scroll1" prefHeight="355.0" prefWidth="369.0" styleClass="transparent" stylesheets="@style.css">
+                     <content>
+                        <GridPane fx:id="grid1" alignment="CENTER" prefHeight="0.0" prefWidth="0.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <Pane prefHeight="88.0" prefWidth="840.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label layoutX="54.0" layoutY="65.0" prefHeight="44.0" prefWidth="116.0" text="Chercher :">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font></Label>
+                              <ComboBox fx:id="caractere_chercher" layoutX="549.0" layoutY="62.0" prefHeight="49.0" prefWidth="173.0" promptText="Critère" styleClass="textfield-design" stylesheets="@../tests/design.css" />
+                              <TextField fx:id="chercherP" layoutX="146.0" layoutY="63.0" onKeyPressed="#chercherP" prefHeight="48.0" prefWidth="395.0" promptText="Chercher ..." styleClass="textfield-design" stylesheets="@../tests/design.css" />
+                           </children></Pane>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scroll" prefHeight="677.0" prefWidth="785.0" style="-fx-background-color: E2D6E6;" styleClass="transparent" stylesheets="@style.css">
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

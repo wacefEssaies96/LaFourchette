@@ -26,6 +26,10 @@ public class Plat {
         this.imageP = imageP;
         this.nomProd = nomProd;
     }
+public Plat(){
+}
+
+    
 
     public String getReference() {
         return reference;

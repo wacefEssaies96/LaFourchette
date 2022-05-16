@@ -8,6 +8,7 @@ package services;
 import entities.Decoration;
 import entities.Reservation;
 import entities.Table_Resto;
+import entities.Utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +35,7 @@ public class ReservationService {
         try {
             String query="INSERT INTO Reservation(IdU,DateCreation,DateModification) values(?,?,?)";
             PreparedStatement smt = cnx.prepareStatement(query);
-            smt.setInt(1, r.getIdU());
+            smt.setInt(1, Utilisateur.Current_User.getIdU());
             smt.setDate(2, r.getDateCreation());
             smt.setDate(3, r.getDateModification());
             smt.executeUpdate();
@@ -49,7 +50,7 @@ public class ReservationService {
         try {
             String query2="update Reservation set  IdU=?, DateCreation=?, DateModification=? where IdR=?";
             PreparedStatement smt = cnx.prepareStatement(query2);
-            smt.setInt(1, r.getIdU());
+            smt.setInt(1, Utilisateur.Current_User.getIdU());
             smt.setDate(2, r.getDateCreation());
             smt.setDate(3, r.getDateModification());
             smt.setInt(4, r.getIdR());
@@ -105,7 +106,7 @@ public class ReservationService {
             System.out.println(ex.getMessage());
         }
         return l;
-    }
+    }//Utilisateur.Current_User.getIdU()
     public List<Reservation> MesResrvation(int iduser) {
         ArrayList l=new ArrayList(); 
         
@@ -152,7 +153,7 @@ public class ReservationService {
             System.out.println(ex.getMessage());
         }
         return l;
-    }
+    }//Utilisateur.Current_User.getIdU() and max id
     public Reservation RecuperedernierReservation(int iduser) {
         Reservation SeulRes=new Reservation(); 
         

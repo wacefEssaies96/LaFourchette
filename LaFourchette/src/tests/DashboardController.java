@@ -35,6 +35,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
@@ -54,6 +55,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import static javax.management.remote.JMXConnectorFactory.connect;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -357,7 +359,7 @@ public class DashboardController implements Initializable {
                                     
                                      if (listgetidu.get(i).equalsIgnoreCase(vID)){
                                         email=listgetemail.get(i);
-                                          Gmail.sendMail(email);
+                                          Gmail_1.sendMail(email);
                                           
                                      }
                                  }
@@ -691,7 +693,7 @@ modifier.setText(R);
     private void pdf_rec(ActionEvent event) {
      
         try{
-            JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\barki\\OneDrive\\Documents\\NetBeansProjects\\Medeet\\src\\tests\\report.jrxml");
+            JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\Iheb\\Desktop\\LaFourchette\\src\\tests\\report_1.jrxml");
         
             JasperReport jReport = JasperCompileManager.compileReport(jDesign);
             
@@ -704,6 +706,18 @@ modifier.setText(R);
             
         }catch(Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+    private void homeTR(MouseEvent event) throws IOException {
+        try{
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            Parent root =FXMLLoader.load(getClass().getResource("/Controllers/InterController.fxml"));
+            Scene scene= new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Liste des Tables");
+            stage.show();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
         }
     }
      @FXML
@@ -750,6 +764,21 @@ modifier.setText(R);
 
     }
 
+    @FXML
+    private void homeIner(MouseEvent event) {
+        try{
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            Parent root =FXMLLoader.load(getClass().getResource("/tests/inter.fxml"));
+            Scene scene= new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Liste des Tables");
+            stage.show();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+
+ 
        
 
 }

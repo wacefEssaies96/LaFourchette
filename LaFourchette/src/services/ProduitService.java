@@ -4,10 +4,10 @@
  * and open the template in the editor.
  */
 package services;
+import GUI.GmailF;
 import entities.Fournisseur;
 import entities.Produit;
 import entities.ProduitFournisseur;
-import guiprodfournisseur.GmailFournisseur;
 
 
 import java.sql.Connection;
@@ -106,7 +106,7 @@ public class ProduitService {
                         fMax = f;
                     }
                 }
-                GmailFournisseur.sendMail(fMax.getEmailF(), p);
+                GmailF.sendMail(fMax.getEmailF(), p);
             }
         }
     }

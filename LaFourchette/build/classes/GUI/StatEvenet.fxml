@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StatEvenetController">
+   <children>
+      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#80e2f8" height="26.0" layoutX="36.0" layoutY="148.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
+      <PieChart fx:id="myPiechart" layoutX="64.0" layoutY="78.0" prefHeight="322.0" prefWidth="500.0" />
+      <Label fx:id="caption" layoutX="77.0" layoutY="23.0" />
+      <Label fx:id="numstat" layoutX="55.0" layoutY="148.0" prefHeight="26.0" prefWidth="92.0" text="Label" />
+      <Label layoutX="72.0" layoutY="40.0" prefHeight="32.0" prefWidth="339.0" text="Statistique nombre participants" textFill="#c96767">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

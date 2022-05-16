@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: E2D6E6;" stylesheets="@../tests/design.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ReservationAdminFXMLController">
+   <children>
+
+      <Label layoutX="444.0" layoutY="40.0" prefHeight="56.0" prefWidth="350.0" text="Liste Reservations" textFill="#662d60">
+         <font>
+            <Font name="Sylfaen" size="44.0" />
+         </font></Label>
+      <VBox layoutX="19.0" layoutY="190.0" prefHeight="419.0" prefWidth="1200.0">
+         <children>
+            <HBox prefHeight="419.0" prefWidth="1182.0">
+               <children>
+                  <ScrollPane fx:id="scrollMesR" prefHeight="447.0" prefWidth="1186.0" style="-fx-background-color: 8f5689;">
+                     <content>
+                        <GridPane fx:id="gridMesR" prefHeight="10.0" prefWidth="0.0">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Label layoutX="19.0" layoutY="134.0" text="Chercher :">
+         <font>
+            <Font size="21.0" />
+         </font></Label>
+      <TextField fx:id="chercherRes" layoutX="128.0" layoutY="134.0" onKeyPressed="#chercherRes" prefHeight="38.0" prefWidth="278.0" promptText="Chercher ..." styleClass="textfield-design" stylesheets="@../tests/design.css" />
+      <ComboBox fx:id="caractere_chercher" layoutX="437.0" layoutY="134.0" opacity="0.99" prefHeight="38.0" prefWidth="173.0" promptText="Critère" styleClass="textfield-design" stylesheets="@../tests/design.css" />
+      <Button fx:id="btn_navD" layoutX="652.0" layoutY="134.0" mnemonicParsing="false" onAction="#navD" prefHeight="38.0" prefWidth="129.0" styleClass="button-design" stylesheets="@../tests/design.css" text="Decoration" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="btn_navTR" layoutX="797.0" layoutY="134.0" mnemonicParsing="false" onAction="#navTR" prefHeight="39.0" prefWidth="129.0" styleClass="button-design" stylesheets="@../tests/design.css" text="Table Resto" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <FontAwesomeIconView fill="#662d60" glyphName="HOME" layoutX="1137.0" layoutY="170.0" onMouseClicked="#homeIner" size="50" styleClass="btn" wrappingWidth="26.85714340209961" />
+   </children>
+</AnchorPane>

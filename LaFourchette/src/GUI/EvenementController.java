@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import doryan.windowsnotificationapi.fr.Notification;
+//import doryan.windowsnotificationapi.fr.Notification;
 import entities.Commentaire;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -42,6 +42,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -59,6 +60,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import static javax.management.remote.JMXConnectorFactory.connect;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -85,8 +87,6 @@ MyConnection mycnx;
 
     private Statement statement;
     @FXML
-    private Label file_path;
-    @FXML
     private AnchorPane EvenementAnchorPane;
     @FXML
     private GridPane grid;
@@ -104,6 +104,10 @@ MyConnection mycnx;
     private TextField recherche;
    private List<Evenement>ListeDesEvent =new ArrayList(); 
    private EListener listen; 
+    @FXML
+    private ScrollPane scroll;
+    @FXML
+    private Button refreshEvenement;
     @Override
     
     public void initialize(URL url, ResourceBundle rb) {
@@ -142,7 +146,7 @@ MyConnection mycnx;
                 itemControler.SetData(e);
                 //itemControler.SetData(ev.get(i),listen);
                 
-           if(col==3){
+           if(col==2){
               col=0;
               row++;
            }
@@ -154,8 +158,9 @@ MyConnection mycnx;
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
-               grid.setVgap(150);
-           GridPane.setMargin(anchorPane, new Insets(10,10,10,10));
+               grid.setVgap(50);
+               grid.setHgap(150);
+           GridPane.setMargin(anchorPane, new Insets(20,10,10,10));
         }
        }catch(Exception e){
             System.out.println(e.getMessage());
@@ -365,7 +370,7 @@ MyConnection mycnx;
        cnx = MyConnection.getInstance().getCnx();
 
         try{
-        JasperDesign jDesign =JRXmlLoader.load("C:\\Users\\user\\Downloads\\LaFourchette-main\\LaFourchette\\src\\tests\\report.jrxml");
+        JasperDesign jDesign =JRXmlLoader.load("C:\\Users\\lenovo\\Desktop\\LaFourchette\\src\\tests\\reportEvenement.jrxml");
         JasperReport jReport =JasperCompileManager.compileReport(jDesign);
       
         JasperPrint jPrint = JasperFillManager.fillReport(jReport, null, cnx);
@@ -445,6 +450,79 @@ MyConnection mycnx;
             primaryStage.setScene(scene);
             primaryStage.show();
     }
+
+    @FXML
+    private void refreshEvenement(ActionEvent event) {
+          EvenementCrud ev = new EvenementCrud();
+        Evenement eve = new Evenement();
+        EListener  Listener;
+        List<Evenement>ListeDesEvent = ev.afficherListeEvenement();
+        //TextField_ID.setDisable(true);
+        
+        grid.getChildren().clear();
+        if (ListeDesEvent.size() > 0) {
+            eve=ListeDesEvent.get(0);
+            //setChosenTable_Resto(ListeDesEvent.get(0));
+            Listener = new EListener() {
+                @Override
+                public void onClickListener(Evenement e) {
+                 setChooseEvenement  (e);
+                   //naaml stage 
+                   
+                }
+            };
+        }
+         int col=0;
+       int row=0;
+       
+       try{
+        
+        for (Evenement e : ListeDesEvent)
+      {
+            FXMLLoader fxmlloader = new FXMLLoader();
+            fxmlloader.setLocation(getClass().getResource("ItemE.fxml"));
+            AnchorPane anchorPane = fxmlloader.load();
+           
+                   ItemEController itemControler = fxmlloader.getController();
+                itemControler.SetData(e);
+                //itemControler.SetData(ev.get(i),listen);
+                
+           if(col==2){
+              col=0;
+              row++;
+           }
+           grid.add(anchorPane,col++,row);
+           //set grid width
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);//set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+               grid.setVgap(50);
+               grid.setHgap(150);
+           GridPane.setMargin(anchorPane, new Insets(20,10,10,10));
+        }
+       }catch(Exception e){
+            System.out.println(e.getMessage());
+            
+        }
+    }
+
+    @FXML
+    private void homeIner(MouseEvent event) {
+        try{
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            Parent root =FXMLLoader.load(getClass().getResource("/tests/inter.fxml"));
+            Scene scene= new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Liste des Tables");
+            stage.show();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
     
     
     

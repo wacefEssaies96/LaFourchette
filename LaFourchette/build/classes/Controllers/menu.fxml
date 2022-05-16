@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorpane" prefHeight="609.0" prefWidth="1076.0" style="-fx-background-color: E2D6E6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.menucontroller">
+   <children>
+      <HBox alignment="CENTER" layoutX="-8.0" prefHeight="51.0" prefWidth="1092.0" spacing="15.0">
+         <children>
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="30">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </FontAwesomeIconView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="menu">
+               <font>
+                  <Font name="Agency FB Bold" size="30.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+         </children>
+      </HBox>
+      <Button fx:id="btpanier" layoutX="923.0" layoutY="523.0" mnemonicParsing="false" onAction="#panieraction" prefHeight="42.0" prefWidth="122.0" styleClass="button-design" stylesheets="@../tests/design.css" text="Panier" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
+      <ScrollPane fx:id="scroll" layoutX="29.0" layoutY="84.0" prefHeight="429.0" prefWidth="1028.0">
+         <content>
+            <GridPane fx:id="gridpanecommande" prefHeight="11.0" prefWidth="12.0">
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Button fx:id="tfvideo" layoutX="819.0" layoutY="523.0" mnemonicParsing="false" onAction="#openvideo" prefHeight="42.0" prefWidth="90.0" styleClass="button-design" stylesheets="@../tests/design.css" text="video" textFill="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

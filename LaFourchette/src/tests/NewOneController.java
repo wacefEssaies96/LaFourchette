@@ -82,8 +82,6 @@ public class NewOneController implements Initializable {
 Connection cnx;
  public URL url;
               public ResourceBundle rb;
-    @FXML
-    private Button dddv;
     /**
      * Initializes the controller class.
      */
@@ -290,7 +288,6 @@ Connection cnx;
          
     } 
 
-    @FXML
     private void inter(ActionEvent event) throws IOException {
         Parent root3 = FXMLLoader.load(getClass().getResource("NewInterfaces2.fxml"));
            Scene scene = new Scene(root3);

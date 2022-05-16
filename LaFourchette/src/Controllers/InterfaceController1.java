@@ -89,8 +89,6 @@ public class InterfaceController1 implements Initializable {
     @FXML
     private Hyperlink login_acc;
     @FXML
-    private ComboBox<String> su_role;
-    @FXML
     private TextField su_adresse;
 
     @FXML
@@ -245,6 +243,12 @@ public class InterfaceController1 implements Initializable {
     
     public boolean permiision(Utilisateur user){
         if(user.getVerif().equalsIgnoreCase("Blocked")){
+            System.out.println("Vous etes bloquer");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("La fourchette :: Utilisateur");
+                alert.setHeaderText(null);
+                alert.setContentText("Vous etes bloqué !!");
+                alert.showAndWait();
             return false;
         }
         return true;
@@ -253,7 +257,7 @@ public class InterfaceController1 implements Initializable {
     @FXML
     public void login(){
     
-       String query2="select * from utilisateur where nom_prenom=?  and password=?";
+       String query2="select * from utilisateur where email=?  and password=?";
       cnx = MyConnection.getInstance().getCnx();
       try{
           PreparedStatement smt = cnx.prepareStatement(query2);
@@ -271,7 +275,7 @@ public class InterfaceController1 implements Initializable {
                      if( permiision(Utilisateur.Current_User)){
                          System.out.println("bonjours"+Utilisateur.Current_User.toString());
                          
-                     if(Utilisateur.Current_User.getRole().equals("Admin") /*&& Utilisateur.Current_User.getVerif().equals("Non_bloc")*/){
+                     if(Utilisateur.Current_User.getRole().equals("[\"ROLE_ADMIN\"]") /*&& Utilisateur.Current_User.getVerif().equals("Non_bloc")*/){
                          
                          
                      Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -291,11 +295,16 @@ public class InterfaceController1 implements Initializable {
                     stage.show();
                          
                      }else{
-                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("La fourchette :: Message");
-                alert.setHeaderText(null);
-                alert.setContentText("vous etes Simple Utilisateur !!");
-                alert.showAndWait();  
+                             login_btn.getScene().getWindow().hide();
+                    Parent root1 = FXMLLoader.load(getClass().getResource("/tests/CliientPanel.fxml"));
+                     Scene scene;
+                     
+                    scene = new Scene(root1);
+                    Stage stage = new Stage();
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setScene(scene);
+      
+                    stage.show();  
                      }
                      }
                     
@@ -303,7 +312,7 @@ public class InterfaceController1 implements Initializable {
                    Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("La fourchette :: Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Wrong Username/Password !!");
+                alert.setContentText("Wrong Email/Password !!");
                 alert.showAndWait();  
                 }
           
@@ -329,11 +338,6 @@ public boolean ValidationEmail(){
        
 }
 
-  public void comboBox(){
-        
-         ObservableList<String> liste = FXCollections.observableArrayList("Admin","User","Others");
-         su_role.setItems(liste);
-    }
     @FXML
    public void InsertImage(){
          FileChooser open = new FileChooser();
@@ -363,7 +367,6 @@ public boolean ValidationEmail(){
                     | su_email.getText().isEmpty()
                     | su_password.getText().isEmpty()
                     | su_adresse.getText().isEmpty()
-                    |su_role.getSelectionModel().isEmpty()
                     |image_view.getImage() == null ){
               
                  Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -399,7 +402,7 @@ public boolean ValidationEmail(){
         smt.setString(1, su_nom_prenom.getText());
             smt.setString(3, su_email.getText());
             smt.setString(2, su_password.getText());
-              smt.setString(4, su_role.getSelectionModel().getSelectedItem());
+              smt.setString(4, "[\"ROLE_USER\"]");
            smt.setString(5, su_adresse.getText());
            smt.setString(6, su_tel.getText());
             smt.setString(7, file_path.getText());
@@ -420,7 +423,7 @@ public boolean ValidationEmail(){
  
     void sendPassword(){
         System.out.println("cxcccccccccccccccccc");
-                String query2="select * from utilisateur where nom_prenom=? ";
+                String query2="select * from utilisateur where email='"+nom_prenom+"' ";
                 String email1="empty";
                  try {
             PreparedStatement smt = cnx.prepareStatement(query2);
@@ -468,20 +471,23 @@ public boolean ValidationEmail(){
                 
     }
      private Message preparedMessage(Session session, String myAccountEmail, String recepient){
-         String query2="select * from utilisateur where nom_prenom=?";
+          cnx =MyConnection.getInstance().getCnx();
+         String query2="select * from utilisateur where email='"+nom_prenom.getText()+"'";
          String userEmail="null" ;
          String pass="empty";
         try {
             PreparedStatement smt = cnx.prepareStatement(query2);
-            smt.setString(1, nom_prenom.getText());
+           // smt.setString(1, nom_prenom.getText());
              ResultSet rs= smt.executeQuery();
              System.out.println(rs);
                 if(rs.next()){
                    pass=rs.getString("password");
-                   userEmail=rs.getString("email");                }
+                   userEmail=rs.getString("email");                
+                }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+         System.out.println(nom_prenom.getText());
         System.out.print("c est en cours");
         String text="Votre mot de pass est :"+pass+"";
         String object ="Recupération de mot de passe";
@@ -507,7 +513,6 @@ public boolean ValidationEmail(){
      @Override
      public void initialize(URL url, ResourceBundle rb) {
         dropShadowEffect();
-           comboBox();
     }    
 
     @FXML

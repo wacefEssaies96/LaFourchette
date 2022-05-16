@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import utils.MyConnection;
 import entities.Commentaire; 
+import entities.Utilisateur;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,11 +67,17 @@ public class AjoutcommantaireController implements Initializable {
             preparedStatement = cnx.prepareStatement(query);
             preparedStatement.setString(1, commentaire.getText());
             preparedStatement.setInt(2, this.idEvent);
-            preparedStatement.setInt(3,2);
+            preparedStatement.setInt(3,Utilisateur.Current_User.getIdU());
             
             
            
             preparedStatement.execute();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+               
+                alert.setTitle("Commentaire");
+                alert.setHeaderText(null);
+                alert.setContentText("Commentaire ajouté ");
+                alert.showAndWait();
 
         } catch (SQLException ex) {
           System.out.println(ex.getMessage());

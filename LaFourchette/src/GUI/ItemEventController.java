@@ -7,10 +7,14 @@ package GUI;
 
 import entities.Commentaire;
 import entities.Evenement;
-import guiprodfournisseur.GmailFournisseur;
+import GUI.Gmail;
+import entities.Utilisateur;
 import java.io.IOException;
 import static java.lang.Integer.parseInt;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +37,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.MyConnection;
 
 /**
  * FXML Controller class
@@ -62,6 +67,10 @@ public class ItemEventController implements Initializable {
     /**
      * Initializes the controller class.
      */
+     String query = null;
+    Connection cnx;
+    PreparedStatement preparedStatement;
+    
     void SetData(Evenement ev){
     this.ev=ev;
       Des.setText(this.ev.getDesignationE());
@@ -108,13 +117,40 @@ public class ItemEventController implements Initializable {
 
     @FXML
     private void participer(ActionEvent event) {
+        cnx = MyConnection.getInstance().getCnx();
+        PreparedStatement preparedStatement;
+        String name = commentaire.getText();
         
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-alert.setTitle("Alert");
-alert.setHeaderText(null);
-alert.setContentText("Votre participation est confirmée");
-alert.showAndWait();
-Gmail.sendMail("farahchahrazed.selmi@esprit.tn");
+        int nbrp = this.ev.getNbrParticipants();
+        
+        if(nbrp >= 0){
+           try {
+               nbrp = this.ev.getNbrParticipants()-1;
+               int id = this.ev.getIdE();
+                query = "UPDATE evenement  SET  nbrParticipants=? WHERE idE=?";
+               preparedStatement = cnx.prepareStatement(query);
+               preparedStatement.setInt(1, nbrp);
+               preparedStatement.setInt(2, id);
+               
+               preparedStatement.execute();
+
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+           alert.setTitle("Alert");
+           alert.setHeaderText(null);
+           alert.setContentText("Votre participation est confirmée");
+           alert.showAndWait();
+
+           Gmail.sendMail(Utilisateur.Current_User.getEmail());
+           } catch (SQLException ex) {
+             System.out.println(ex.getMessage());
+           }
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+           alert.setTitle("Alert");
+           alert.setHeaderText(null);
+           alert.setContentText(" Tous les places sont reservé");
+           alert.showAndWait();
+        }
         
         
     }

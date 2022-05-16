@@ -45,6 +45,8 @@ import javafx.stage.StageStyle;
 import services.UtilisateurService;
 import utils.MyConnection;
 import entities.Employer;
+import javafx.scene.Node;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -477,7 +479,7 @@ public void deblocker (Utilisateur t) {
     @FXML
     public void print(){
         try{
-        JasperDesign jDesign =JRXmlLoader.load("C:\\Users\\pc\\Documents\\NetBeansProjects\\LaFourchette\\LaFourchette\\src\\tests\\report.jrxml");
+        JasperDesign jDesign =JRXmlLoader.load("C:\\Users\\Iheb\\Desktop\\LaFourchette\\src\\tests\\report.jrxml");
         JasperReport jReport =JasperCompileManager.compileReport(jDesign);
       
         JasperPrint jPrint = JasperFillManager.fillReport(jReport, null, cnx);
@@ -581,6 +583,20 @@ public void deblocker (Utilisateur t) {
          col_picture.setCellValueFactory(new PropertyValueFactory<>("picture"));
          table_view.setItems(showList);  
         
+    }
+
+    @FXML
+    private void homeIner(MouseEvent event) {
+         try{
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            Parent root =FXMLLoader.load(getClass().getResource("/tests/inter.fxml"));
+            Scene scene= new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Liste des Tables");
+            stage.show();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
     
     

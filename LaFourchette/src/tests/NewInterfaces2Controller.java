@@ -55,11 +55,13 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import tests.ItemController;
 import tests.MyListener;
@@ -95,8 +97,6 @@ public class NewInterfaces2Controller implements Initializable {
     private Button details;
     @FXML
     private Button job;
-    @FXML
-    private Button tri;
     
 
 
@@ -223,7 +223,7 @@ public class NewInterfaces2Controller implements Initializable {
         }
     }
 
-    private void Refresh_Table(ActionEvent event) {
+    /*private void Refresh_Table(ActionEvent event) {
         
             cnx = MyConnection.getInstance().getCnx();
         //ObservableList l=new ArrayList(); 
@@ -248,7 +248,7 @@ public class NewInterfaces2Controller implements Initializable {
         
         
     }
-
+*/
     @FXML
     private void Refresh_Table(MouseEvent event) {
         
@@ -299,6 +299,21 @@ public class NewInterfaces2Controller implements Initializable {
         }
         
         
+        
+    }
+
+    @FXML
+    private void homeIner(MouseEvent event) {
+        try{
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            Parent root =FXMLLoader.load(getClass().getResource("/tests/inter.fxml"));
+            Scene scene= new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Liste des Tables");
+            stage.show();
+        }catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
 
    

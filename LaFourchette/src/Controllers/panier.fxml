@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="717.0" prefWidth="1054.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PanierController">
+   <children>
+      <HBox alignment="CENTER" layoutX="-8.0" prefHeight="51.0" prefWidth="1092.0" spacing="15.0" styleClass="topbar-background" stylesheets="@../CSS/AllStyle.css">
+         <children>
+            <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="30">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </FontAwesomeIconView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="menu">
+               <font>
+                  <Font name="Agency FB Bold" size="30.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Text>
+         </children>
+      </HBox>
+      <GridPane fx:id="gridpanecommande" layoutY="51.0" prefHeight="486.0" prefWidth="1084.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="260.0" prefWidth="268.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="260.0" prefWidth="293.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="197.0" prefWidth="337.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="675.0" minWidth="119.0" prefWidth="184.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="255.0" minHeight="39.0" prefHeight="119.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="144.0" minHeight="260.0" prefHeight="260.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
+      <Button fx:id="btpanier" layoutX="941.0" layoutY="551.0" mnemonicParsing="false" onAction="#panieraction" text="Commander" />
+      <Label fx:id="labeltotal" layoutX="853.0" layoutY="556.0" prefHeight="31.0" prefWidth="75.0" text="0" />
+      <Label layoutX="802.0" layoutY="561.0" text="Total" />
+   </children>
+</AnchorPane>

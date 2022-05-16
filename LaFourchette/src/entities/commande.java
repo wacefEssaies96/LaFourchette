@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entites;
+package entities;
 
 /**
  *
@@ -12,36 +12,33 @@ package entites;
 
 public class commande {
     private int idC;
-    private int idU;
-    private String reference;
-    private String etatC;
+    private  String referenceplat;
+    private  int idU;
+ 
+    private int quantity;
     private String livraison;
     private double  prixC;
     public  commande() {};
 
-    public commande(int idC, int idU, String reference, String etatC, String livraison, double prix) {
-        this.idC = idC;
-        this.idU = idU;
-        this.reference = reference;
-        this.etatC = etatC;
-        this.livraison = livraison;
-        this.prixC = prixC;
+    @Override
+    public String toString() {
+        return "commande{" + "idC=" + idC + ", referenceplat=" + referenceplat + ", idU=" + idU + ", quantity=" + quantity + ", livraison=" + livraison + ", prixC=" + prixC + '}';
     }
 
     public void setIdC(int idC) {
         this.idC = idC;
     }
 
+    public void setReferenceplat(String referenceplat) {
+        this.referenceplat = referenceplat;
+    }
+
     public void setIdU(int idU) {
         this.idU = idU;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
-
-    public void setEtatC(String etatC) {
-        this.etatC = etatC;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public void setLivraison(String livraison) {
@@ -56,16 +53,16 @@ public class commande {
         return idC;
     }
 
+    public String getReferenceplat() {
+        return referenceplat;
+    }
+
     public int getIdU() {
         return idU;
     }
 
-    public String getReference() {
-        return reference;
-    }
-
-    public String getEtatC() {
-        return etatC;
+    public int getQuantity() {
+        return quantity;
     }
 
     public String getLivraison() {
@@ -76,11 +73,13 @@ public class commande {
         return prixC;
     }
 
-    @Override
-    public String toString() {
-        return "commande{" + "idC=" + idC + ", idU=" + idU + ", reference=" + reference + ", etatC=" + etatC + ", livraison=" + livraison + ", prix=" + prixC + '}';
+    public commande(int idC, String referenceplat, int idU, int quantity, String livraison, double prixC) {
+        this.idC = idC;
+        this.referenceplat = referenceplat;
+        this.idU = idU;
+        this.quantity = quantity;
+        this.livraison = livraison;
+        this.prixC = prixC;
     }
 
-     
-    
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="420.0" styleClass="main" stylesheets="@design.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tests.CalculatriceController">
+   <children>
+      <AnchorPane layoutX="110.0" layoutY="138.0" prefHeight="500.0" prefWidth="420.0" styleClass="card" stylesheets="@design.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="125.0" prefWidth="420.0">
+               <children>
+                  <Label fx:id="result" alignment="CENTER_RIGHT" layoutX="35.0" layoutY="28.0" prefHeight="70.0" prefWidth="351.0" styleClass="key-result" stylesheets="@design.css" text="0" />
+                  <Label fx:id="prevnum" layoutX="51.0" layoutY="33.0" prefHeight="21.0" prefWidth="321.0" styleClass="prevnumber" stylesheets="@design.css" />
+                  <Button layoutX="387.0" layoutY="2.0" mnemonicParsing="false" onAction="#exit" prefHeight="31.0" prefWidth="32.0" styleClass="exit" stylesheets="@design.css" />
+                  <FontAwesomeIconView fill="#f8f5f5" glyphName="CLOSE" layoutX="399.0" layoutY="21.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutY="140.0" prefHeight="362.0" prefWidth="420.0">
+               <children>
+                  <GridPane layoutX="31.0" layoutY="19.0" prefHeight="324.0" prefWidth="359.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="178.0" minHeight="10.0" prefHeight="103.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="249.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="3" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="1" GridPane.rowIndex="2" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="5" GridPane.rowIndex="1" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#operatorProcess" styleClass="keypad" stylesheets="@design.css" text="+" GridPane.columnIndex="3" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="9" GridPane.columnIndex="2" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="8" GridPane.columnIndex="1" />
+                        <Button layoutX="94.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#operatorProcess" styleClass="keypad" stylesheets="@design.css" text="*" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#operatorProcess" styleClass="keypad" stylesheets="@design.css" text="Ans" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#operatorProcess" styleClass="keypad" stylesheets="@design.css" text="-" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="." GridPane.rowIndex="3" />
+                        <Button layoutX="94.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#computeProcess" styleClass="keypad" stylesheets="@design.css" text="7" />
+                        <Button layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#operatorProcess" styleClass="keypad" stylesheets="@design.css" text="/" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="clear" layoutX="31.0" layoutY="-12.0" mnemonicParsing="false" onAction="#clear" prefHeight="31.0" prefWidth="90.0" styleClass="clear" stylesheets="@design.css" text="Clear" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
